@@ -9,7 +9,7 @@ import _ from 'lodash';
 
 import "../styles/shop.css";
 
-import itemProducts from '../assets/data/itemProductsData'
+// import itemProducts from '../assets/data/itemProductsData'
 import ProductList from '../components/UI/ProductsList'
 
 const Shop = ( ) => {
@@ -19,8 +19,11 @@ const Shop = ( ) => {
 
     const [filteredProducts, setProducts] = useState([]);
 
+    const [loading, setLoading] = useState(false);
+
     useEffect(() => {
         const getProduct = async() => {
+            setLoading(true);
             const docSnap = await getDocs(collection(db, 'products'));
           
             let data = [];
@@ -30,6 +33,7 @@ const Shop = ( ) => {
 
             setProducts(data);
             setProductsData(data);
+            setLoading(false);
         }
 
         getProduct();
@@ -37,11 +41,16 @@ const Shop = ( ) => {
 
     // itong part na 'to is for category filter ng mga products
     const handleFilter = e => {
+        setLoading(true);
         const filterValue = e.target.value
 
         if(filterValue) {
             setProducts(_.filter(productsData, o => o.category === filterValue));
-        } else setProducts(productsData)
+            setLoading(false);
+        } else {
+            setProducts(productsData)
+            setLoading(false);
+        }
         
         // // for bottoms category
         //     if(filterValue === 'bottoms') {
@@ -89,15 +98,36 @@ const Shop = ( ) => {
 
     // itong part na 'to is for search naman
     const handleSearch = e => {
+        setLoading(true);
         const searchTerm = e.target.value
 
         if(searchTerm) {
             setProducts(_.filter(productsData, o => _.includes(o.itemProductName?.toLowerCase(), searchTerm.toLowerCase())));
-        } else setProducts(productsData)
+            setLoading(false);
+        } else {
+            setProducts(productsData);
+            setLoading(false);
+        }
 
         // const searchProducts = itemProducts.filter(item => item.itemProductName.toLowerCase().includes(searchTerm.toLowerCase()))
 
         // setProductsData(searchProducts)
+    }
+
+    const handleSortFilter = e => {
+        setLoading(true);
+        const filterValue = e.target.value
+
+        if(filterValue === 'ascending') {
+            setProducts(_.sortBy(filteredProducts, 'price'));
+            setLoading(false);
+        } else if(filterValue === 'descending') {
+            setProducts(_.sortBy(filteredProducts, 'price').reverse());
+            setLoading(false);
+        } else {
+            setProducts(productsData);
+            setLoading(false);
+        }
     }
 
 
@@ -123,8 +153,8 @@ const Shop = ( ) => {
                         </Col>
                         <Col lg='3' md='6' className="text-end">
                         <div className="filter__widget">
-                                <select>
-                                <option>Sort By</option>
+                                <select onChange={handleSortFilter}>
+                                    <option value="">Sort By</option>
                                     <option value="ascending">Ascending</option>
                                     <option value="descending">Descending</option>
                                 </select>
@@ -142,12 +172,17 @@ const Shop = ( ) => {
 
             <section className="pt=0">
                 <Container>
-                    <Row>
-                        {
-                            filteredProducts.length === 0? <h1 className="text-center fs-4">No items found</h1>
-                            : <ProductList data={filteredProducts}/>
-                        }
-                    </Row>
+                    {
+                        loading ? (<h4 className="py-5 ">Loading...</h4>) : 
+                        (
+                            <Row>
+                                {
+                                    filteredProducts.length === 0? <h1 className="text-center fs-4">No items found</h1>
+                                    : <ProductList data={filteredProducts}/>
+                                }
+                            </Row>
+                        )
+                    }                   
                 </Container>
             </section>
 
