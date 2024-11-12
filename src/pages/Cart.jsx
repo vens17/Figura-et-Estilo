@@ -22,7 +22,7 @@ const Cart = ( ) => {
                         <Col lg='9'>
 
                         {
-                            cartItems.length == 0 ? (<h2 className="fs-4 text-center">No items added to the cart</h2>) : ( 
+                            cartItems.length === 0 ? (<h2 className="fs-4 text-center">No items added to the cart</h2>) : ( 
                             <table className="table bordered">
                                 <thead>
                                     <tr>
@@ -86,7 +86,7 @@ const Tr = ({item}) => {
                 <motion.i 
                     whileTap={{ scale: 1.2 }} 
                     onClick={deleteProduct}
-                    class="ri-delete-bin-5-line">
+                    className="ri-delete-bin-5-line">
                 </motion.i>
             </td>
         </tr>

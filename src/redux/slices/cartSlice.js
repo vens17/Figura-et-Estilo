@@ -44,7 +44,7 @@ const cartSlice = createSlice ({
 
         deleteItem:(state, action) => {
             const id = action.payload
-            const existingItem = state.cartItems.find(item => item.id == id)
+            const existingItem = state.cartItems.find(item => item.id === id)
     
             if (existingItem) {
                 state.cartItems = state.cartItems.filter(item => item.id !== id)

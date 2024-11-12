@@ -30,7 +30,7 @@ const AddProducts = () => {
             const uploadTask = uploadBytesResumable(storageRef, enterProductImg)
 
             // the product was added and saved to the Firestore database.
-            {/*uploadTask.on(
+            /*{uploadTask.on(
                 'state_changed',
                 (snapshot) => {
                     // Progress function can go here if needed
@@ -51,7 +51,7 @@ const AddProducts = () => {
                     });
                     
                 }
-            );*/}
+            );}*/
 
             // the original code
             uploadTask.on(

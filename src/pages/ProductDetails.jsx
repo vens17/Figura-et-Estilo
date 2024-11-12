@@ -28,9 +28,8 @@ const ProductDetails = ( ) => {
 
     const {data: products} = useGetData('products')
 
-    const docRef = doc(db, 'products', id)
-
     useEffect(() => {
+        const docRef = doc(db, 'products', id)
         const getProduct = async() => {
             const docSnap = await getDoc(docRef);
 
@@ -57,7 +56,7 @@ const ProductDetails = ( ) => {
             shortDesc, 
             category} = product;
 
-    const relatedProducts = products.filter(item => item.category == category);
+    const relatedProducts = products.filter(item => item.category === category);
 
     const submitHandler = (e) => {
         e.preventDefault()
@@ -79,7 +78,7 @@ const ProductDetails = ( ) => {
         dispatch(
             cartActions.addItem({
                 id,
-                image:imgUrl,
+                imgUrl,
                 itemProductName,
                 price,
             })
@@ -109,19 +108,19 @@ const ProductDetails = ( ) => {
                                 <div className="product__rating d-flex align-items-center gap-5 mb-4">
                                     <div>
                                     <span>
-                                        <i class="ri-star-fill"></i>
+                                        <i className="ri-star-fill"></i>
                                     </span>
                                     <span>
-                                        <i class="ri-star-fill"></i>
+                                        <i className="ri-star-fill"></i>
                                     </span>
                                     <span>
-                                        <i class="ri-star-fill"></i>
+                                        <i className="ri-star-fill"></i>
                                     </span>
                                     <span>
-                                        <i class="ri-star-fill"></i>
+                                        <i className="ri-star-fill"></i>
                                     </span>
                                     <span>
-                                        <i class="ri-star-half-s-line"></i>
+                                        <i className="ri-star-half-s-line"></i>
                                     </span>
                                     </div>
 
@@ -133,7 +132,7 @@ const ProductDetails = ( ) => {
 
                                 <div className="d-flex align-items-center gap-5">
                                 <span className="product__price">Php {price}</span>
-                                <span>Category: {category.toUpperCase()}</span>
+                                <span>Category: {category?.toUpperCase()}</span>
                                 </div>
                                 <p className="mt-3">{shortDesc}</p>
 
@@ -157,7 +156,7 @@ const ProductDetails = ( ) => {
                                 <h6 className={`${tab === "rev" ? "active__tab" : ""}`}
                                 onClick={() => setTab('rev')}> 
 
-                                Reviews ({reviews.length})
+                                Reviews ({reviews?.length})
                                 
                                 </h6>
                             </div>
@@ -190,11 +189,11 @@ const ProductDetails = ( ) => {
                                             </div>
 
                                             <div className="form__group d-flex align-items-center gap-5 rating__group">
-                                                <motion.span whileTap={{scale:1.2}} onClick={() => setRating(1)}>1<i class="ri-star-s-fill"></i></motion.span>
-                                                <motion.span whileTap={{scale:1.2}} onClick={() => setRating(2)}>2<i class="ri-star-s-fill"></i></motion.span>
-                                                <motion.span whileTap={{scale:1.2}} onClick={() => setRating(3)}>3<i class="ri-star-s-fill"></i></motion.span>
-                                                <motion.span whileTap={{scale:1.2}} onClick={() => setRating(4)}>4<i class="ri-star-s-fill"></i></motion.span>
-                                                <motion.span whileTap={{scale:1.2}} onClick={() => setRating(5)}>5<i class="ri-star-s-fill"></i></motion.span>
+                                                <motion.span whileTap={{scale:1.2}} onClick={() => setRating(1)}>1<i className="ri-star-s-fill"></i></motion.span>
+                                                <motion.span whileTap={{scale:1.2}} onClick={() => setRating(2)}>2<i className="ri-star-s-fill"></i></motion.span>
+                                                <motion.span whileTap={{scale:1.2}} onClick={() => setRating(3)}>3<i className="ri-star-s-fill"></i></motion.span>
+                                                <motion.span whileTap={{scale:1.2}} onClick={() => setRating(4)}>4<i className="ri-star-s-fill"></i></motion.span>
+                                                <motion.span whileTap={{scale:1.2}} onClick={() => setRating(5)}>5<i className="ri-star-s-fill"></i></motion.span>
                                             </div>
 
                                             <div className="form__group">

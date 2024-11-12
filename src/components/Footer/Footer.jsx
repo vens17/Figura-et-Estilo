@@ -80,17 +80,17 @@ const Footer = ( ) => {
                     <h4 className="links__titles">Contacts</h4>
                     <ListGroup className="footer__contacts">
                         <ListGroupItem className="ps-0 border-0 d-flex align-items-center gap-2">
-                            <span><i class="ri-map-pin-line"></i></span>
+                            <span><i className="ri-map-pin-line"></i></span>
                             <p>Dasmarinas City, Cavite</p>
                         </ListGroupItem>
 
                         <ListGroupItem className="ps-0 border-0 d-flex align-items-center gap-2">
-                        <span><i class="ri-contacts-book-line"></i></span>
+                        <span><i className="ri-contacts-book-line"></i></span>
                         <p>+639159623478</p>
                         </ListGroupItem>
 
                         <ListGroupItem className="ps-0 border-0 d-flex align-items-center gap-2">
-                        <span><i class="ri-mail-open-line"></i></span>
+                        <span><i className="ri-mail-open-line"></i></span>
                         <p>figuraestilo@gmail.com</p>
                         </ListGroupItem>
 

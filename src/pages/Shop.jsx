@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, {useState, useEffect } from "react";
 
 import CommonSection from "../components/UI/CommonSection";
 import Helmet from '../components/Helmet/Helmet'
 import { Container, Row, Col } from "reactstrap";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../firebase.config";
+import _ from 'lodash';
 
 import "../styles/shop.css";
 
@@ -12,53 +15,75 @@ import ProductList from '../components/UI/ProductsList'
 const Shop = ( ) => {
 
     // code para sa item products na nasa store/shop
-    const [productsData, setProductsData] = useState (itemProducts)
+    const [productsData, setProductsData] = useState ([])
+
+    const [filteredProducts, setProducts] = useState([]);
+
+    useEffect(() => {
+        const getProduct = async() => {
+            const docSnap = await getDocs(collection(db, 'products'));
+          
+            let data = [];
+            await docSnap.forEach((doc) => {
+                data.push(_.merge({ 'id': doc.id }, doc.data()));
+            });
+
+            setProducts(data);
+            setProductsData(data);
+        }
+
+        getProduct();
+    }, [])
 
     // itong part na 'to is for category filter ng mga products
     const handleFilter = e => {
-
         const filterValue = e.target.value
-        // for bottoms category
-            if(filterValue === 'bottoms') {
-                const filteredProducts = itemProducts.filter (item => item.category === 'bottoms');
 
-                setProductsData(filteredProducts);
-            }
+        if(filterValue) {
+            setProducts(_.filter(productsData, o => o.category === filterValue));
+        } else setProducts(productsData)
+        
+        // // for bottoms category
+        //     if(filterValue === 'bottoms') {
+        //         const filteredProducts = productsData.filter (item => item.category === 'bottoms');
 
-            // for tops category
-            if(filterValue === 'tops') {
-                const filteredProducts = itemProducts.filter (item => item.category === 'tops');
+        //         setProductsData(filteredProducts);
+        //     }
 
-                setProductsData(filteredProducts);
-            }
+        //     // for tops category
+        //     if(filterValue === 'tops') {
+        //         const filteredProducts = productsData.filter (item => item.category === 'tops');
 
-            // for jumpsuit category
-            if(filterValue === 'jumpsuit') {
-                const filteredProducts = itemProducts.filter (item => item.category === 'jumpsuit');
+        //         setProductsData(filteredProducts);
+        //     }
 
-                setProductsData(filteredProducts);
-            }
+        //     // for jumpsuit category
+        //     if(filterValue === 'jumpsuit') {
+        //         const filteredProducts = itemProducts.filter (item => item.category === 'jumpsuit');
 
-            // for jumper category
-            if(filterValue === 'jumper') {
-                const filteredProducts = itemProducts.filter (item => item.category === 'jumper');
+        //         setProductsData(filteredProducts);
+        //     }
 
-                setProductsData(filteredProducts);
-            }
+        //     // for jumper category
+        //     if(filterValue === 'jumper') {
+        //         const filteredProducts = itemProducts.filter (item => item.category === 'jumper');
 
-            // for skirts category
-            if(filterValue === 'skirts') {
-                const filteredProducts = itemProducts.filter (item => item.category === 'skirts');
+        //         setProductsData(filteredProducts);
+        //     }
 
-                setProductsData(filteredProducts);
-            }
+        //     // for skirts category
+        //     if(filterValue === 'skirts') {
+        //         const filteredProducts = itemProducts.filter (item => item.category === 'skirts');
 
-            // for jorts category
-            if(filterValue === 'jorts') {
-                const filteredProducts = itemProducts.filter (item => item.category === 'jorts');
+        //         setProductsData(filteredProducts);
+        //     }
 
-                setProductsData(filteredProducts);
-            }
+        //     // for jorts category
+        //     if(filterValue === 'jorts') {
+        //         const filteredProducts = itemProducts.filter (item => item.category === 'jorts');
+
+        //         setProductsData(filteredProducts);
+        //     }
 
     };
 
@@ -66,9 +91,13 @@ const Shop = ( ) => {
     const handleSearch = e => {
         const searchTerm = e.target.value
 
-        const searchProducts = itemProducts.filter(item => item.itemProductName.toLowerCase().includes(searchTerm.toLowerCase()))
+        if(searchTerm) {
+            setProducts(_.filter(productsData, o => _.includes(o.itemProductName?.toLowerCase(), searchTerm.toLowerCase())));
+        } else setProducts(productsData)
 
-            setProductsData(searchProducts)
+        // const searchProducts = itemProducts.filter(item => item.itemProductName.toLowerCase().includes(searchTerm.toLowerCase()))
+
+        // setProductsData(searchProducts)
     }
 
 
@@ -82,7 +111,7 @@ const Shop = ( ) => {
                         <Col lg='3' md='3'>
                             <div className="filter__widget">
                                 <select onChange={handleFilter}>
-                                <option>Clothes Category</option>
+                                    <option value="">Clothes Category</option>
                                     <option value="bottoms">Bottoms</option>
                                     <option value="tops">Tops</option>
                                     <option value="jumpsuit">Jumpsuit</option>
@@ -104,7 +133,7 @@ const Shop = ( ) => {
                         <Col lg='6' md='12'>
                             <div className="search__box">
                                 <input type="text" placeholder="Search" onChange={handleSearch}/>
-                                <span><i class="ri-search-eye-line"></i></span>
+                                <span><i className="ri-search-eye-line"></i></span>
                             </div>
                         </Col>
                     </Row>
@@ -115,8 +144,8 @@ const Shop = ( ) => {
                 <Container>
                     <Row>
                         {
-                            productsData.length === 0? <h1 className="text-center fs-4">No items found</h1>
-                            : <ProductList data={productsData}/>
+                            filteredProducts.length === 0? <h1 className="text-center fs-4">No items found</h1>
+                            : <ProductList data={filteredProducts}/>
                         }
                     </Row>
                 </Container>
