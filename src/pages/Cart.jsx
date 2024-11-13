@@ -23,7 +23,7 @@ const Cart = ( ) => {
 
                         {
                             cartItems.length === 0 ? (<h2 className="fs-4 text-center">No items added to the cart</h2>) : ( 
-                            <table className="table bordered">
+                            <table className="table cart-table bordered">
                                 <thead>
                                     <tr>
                                         <th>Image</th>

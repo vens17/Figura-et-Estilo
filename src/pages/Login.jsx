@@ -3,7 +3,8 @@ import Helmet from "../components/Helmet/Helmet";
 import { Container, Row, Col, Form, FormGroup } from "reactstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase.config";
+import { db, auth } from "../firebase.config";
+import { doc, getDoc } from "firebase/firestore";
 import { toast } from "react-toastify";
 
 import "../styles/login.css";
@@ -25,11 +26,16 @@ const Login = ( ) => {
 
             const user = userCredential.user
 
-            console.log(user)
+            const userInfo = await getDoc(doc(db, 'users', user.uid));
+
+            if (userInfo.exists()) {
+                if(userInfo.data().type === 'seller') {
+                    navigate('/dashboard');
+                } else navigate('/home');                
+            } else navigate('/checkout');
+
             setLoading(false)
             toast.success("Successfully Logged In")
-            navigate('/checkout')
-            
         } catch (error) {
             setLoading(false)
             toast.error(error.message)

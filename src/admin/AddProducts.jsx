@@ -124,19 +124,21 @@ const AddProducts = () => {
 
                                     <FormGroup className="form__group w-50">
                                         <span>Category</span>
-                                        <select className="w-100 p-2"
-                                            value={enterCategory} 
-                                            onChange={e => setEnterCategory(e.target.value)}>
+                                        <div className="filter__widget">
+                                            <select className="w-100 p-2"
+                                                value={enterCategory} 
+                                                onChange={e => setEnterCategory(e.target.value)}>
 
-                                            <option>Select Category</option>
-                                            <option value="bottoms">Bottoms</option>
-                                            <option value="jumper">Jumper</option>
-                                            <option value="skirts">Skirts</option>
-                                            <option value="jumpsuit">Jumpsuit</option>
-                                            <option value="jorts">Jorts</option>
-                                            <option value="tops">Tops</option>
+                                                <option>Select Category</option>
+                                                <option value="bottoms">Bottoms</option>
+                                                <option value="jumper">Jumper</option>
+                                                <option value="skirts">Skirts</option>
+                                                <option value="jumpsuit">Jumpsuit</option>
+                                                <option value="jorts">Jorts</option>
+                                                <option value="tops">Tops</option>
 
-                                        </select>
+                                            </select>
+                                        </div>
                                     </FormGroup>
 
                                     </div>

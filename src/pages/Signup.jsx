@@ -5,9 +5,7 @@ import { Link } from "react-router-dom";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { setDoc, doc } from "firebase/firestore";
-import { auth } from "../firebase.config";
-import { storage } from "../firebase.config";
-import { db } from "../firebase.config";
+import { db, auth, storage } from "../firebase.config";
 import { toast } from "react-toastify";
 
 import "../styles/login.css";
@@ -19,6 +17,7 @@ const Signup = ( ) => {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [type, setAccountType] = useState("");
     const [file, setFile] = useState(null);
     const [loading, setLoading] = useState(false);
 
@@ -56,6 +55,7 @@ const Signup = ( ) => {
                             uid: user.uid,
                             displayName: username,
                             email,
+                            type,
                             photoURL: downloadURL,
                         });
 
@@ -65,12 +65,13 @@ const Signup = ( ) => {
 
             setLoading(false)
             toast.success("Account Created");
-            navigate('/login')
 
+            if(type === 'seller') {
+                navigate('/dashboard');
+            } else navigate('/home');
         } catch (error) {
             setLoading(false)
-            toast.error("something went wrong");
-            
+            toast.error("something went wrong");            
         }
 
     };
@@ -86,7 +87,7 @@ const Signup = ( ) => {
                             <h3 className="fw-bold mb-4">Signup</h3>
 
                             <Form className="auth__form" onSubmit={signup}>
-                            <FormGroup className="form__group">
+                                <FormGroup className="form__group">
                                     <input type="text" 
                                     placeholder="Username"
                                     value={username}
@@ -105,6 +106,16 @@ const Signup = ( ) => {
                                     placeholder="Enter your password"
                                     value={password}
                                     onChange={e => setPassword(e.target.value)}/>
+                                </FormGroup>
+
+                                <FormGroup className="form__group">
+                                    <div className="filter__widget">
+                                        <select className="w-100" onChange={e => setAccountType(e.target.value)}>
+                                            <option value="">Account type</option>
+                                            <option value="buyer">Buyer</option>
+                                            <option value="seller">Seller</option>
+                                        </select>
+                                    </div>
                                 </FormGroup>
 
                                 <FormGroup className="form__group">

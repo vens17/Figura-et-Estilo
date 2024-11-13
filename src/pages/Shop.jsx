@@ -41,16 +41,11 @@ const Shop = ( ) => {
 
     // itong part na 'to is for category filter ng mga products
     const handleFilter = e => {
-        setLoading(true);
         const filterValue = e.target.value
 
         if(filterValue) {
             setProducts(_.filter(productsData, o => o.category === filterValue));
-            setLoading(false);
-        } else {
-            setProducts(productsData)
-            setLoading(false);
-        }
+        } else setProducts(productsData);
         
         // // for bottoms category
         //     if(filterValue === 'bottoms') {
@@ -98,16 +93,11 @@ const Shop = ( ) => {
 
     // itong part na 'to is for search naman
     const handleSearch = e => {
-        setLoading(true);
         const searchTerm = e.target.value
 
         if(searchTerm) {
             setProducts(_.filter(productsData, o => _.includes(o.itemProductName?.toLowerCase(), searchTerm.toLowerCase())));
-            setLoading(false);
-        } else {
-            setProducts(productsData);
-            setLoading(false);
-        }
+        } else setProducts(productsData);
 
         // const searchProducts = itemProducts.filter(item => item.itemProductName.toLowerCase().includes(searchTerm.toLowerCase()))
 
@@ -115,19 +105,13 @@ const Shop = ( ) => {
     }
 
     const handleSortFilter = e => {
-        setLoading(true);
         const filterValue = e.target.value
 
         if(filterValue === 'ascending') {
             setProducts(_.sortBy(filteredProducts, 'price'));
-            setLoading(false);
         } else if(filterValue === 'descending') {
             setProducts(_.sortBy(filteredProducts, 'price').reverse());
-            setLoading(false);
-        } else {
-            setProducts(productsData);
-            setLoading(false);
-        }
+        } else setProducts(productsData);
     }
 
 

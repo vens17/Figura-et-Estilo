@@ -9,10 +9,14 @@ import Signup from '../pages/Signup'
 import ProtectedRoute from './ProtectedRoute'
 import AddProducts from '../admin/AddProducts'
 import AllProducts from '../admin/AllProducts'
+import Orders from '../admin/Orders'
 import Dashboard from '../admin/Dashboard'
 import Users from '../admin/User'
+import useAuth from "../custom-hooks/useAuth";
 
 const Routers = ( ) => {
+    const { currentUser } = useAuth(); 
+
     return (
     <Routes>
     <Route path="/" element={<Navigate to='home' />} />
@@ -22,12 +26,21 @@ const Routers = ( ) => {
         <Route path='cart' element={<Cart />}/>
 
         <Route path="/*" element={<ProtectedRoute/>}>
-
             <Route path="checkout" element={<Checkout/>} />
-            <Route path="dashboard" element={<Dashboard/>} />
-            <Route path="dashboard/all-products" element={<AllProducts/>} />
-            <Route path="dashboard/add-product" element={<AddProducts/>} />
-            <Route path="dashboard/users" element={<Users/>} />
+            
+            {
+                currentUser?.type === 'seller' ?
+                    <>
+                        
+                        <Route path="dashboard" element={<Dashboard/>} />
+                        <Route path="dashboard/all-products" element={<AllProducts/>} />
+                        <Route path="dashboard/add-product" element={<AddProducts/>} />
+                        <Route path="dashboard/orders" element={<Orders/>} />
+                        <Route path="dashboard/users" element={<Users/>} />
+                    </>
+                : ''
+            }
+
         </Route>
 
 

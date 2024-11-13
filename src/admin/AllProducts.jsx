@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Container, Row, Col } from "reactstrap";
 import { db } from "../firebase.config";
 import { doc, deleteDoc } from "firebase/firestore";
@@ -14,8 +15,14 @@ const AllProducts = () => {
     }
 
     return (
-        <section>
+        <section className="pt-0">            
                 <Container>
+                    <div className="d-flex justify-content-end mb-5">
+                        <Link to='/dashboard/add-product'>
+                            <button type="button" className="buy__btn">Add New Product</button>
+                        </Link>
+                    </div>
+
                     <Row>
                         <Col lg='12'>
                             <table className="table">
@@ -33,12 +40,12 @@ const AllProducts = () => {
 
                                 <tbody>
                                     {
-                                        loading ? (<h4 className="py-5 text-center fw-bold">Loading...</h4>) : 
+                                        loading ? (<tr><td colSpan={5}><h4 className="py-5 text-center fw-bold">Loading...</h4></td></tr>) : 
                                         
                                             (productsData.map(item => (
                                                 <tr key={item.id}>
-                                                    <td> <img src={item.imgUrl} alt="" /> </td>
-                                                    <td>{item.name}</td>
+                                                    <td> <img src={item.imgUrl} alt="" style={{ 'width': '80px' }}/> </td>
+                                                    <td>{item.itemProductName}</td>
                                                     <td>{item.category}</td>
                                                     <td>{item.price}</td>
                                                     <td> 

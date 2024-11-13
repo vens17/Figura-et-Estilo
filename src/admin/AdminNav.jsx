@@ -57,21 +57,28 @@ const AdminNav = () => {
 
         <section className="admin__menu p-0">
             <Container>
-                <Row>
-                    <div className="admin__navigation">
-                        <ul className="admin__menu-list">
-                            {
-                                admin__nav.map((item, index) => (
-                                    <li className="admin__menu-item" key={index}>
-                                        <NavLink to={item.path} className={navClass => navClass.isActive ? 'active__admin-menu' : '' } >
-                                             {item.display} </NavLink>
-                                    </li>
+                {
+                    currentUser?.type === 'seller' ? 
+                        <Row>
+                            <div className="admin__navigation">
+                                <ul className="admin__menu-list">
+                                    {
+                                        admin__nav.map((item, index) => (
+                                            <li className="admin__menu-item" key={index}>
+                                                <NavLink to={item.path} className={navClass => navClass.isActive ? 'active__admin-menu' : '' } >
+                                                    {item.display} </NavLink>
+                                            </li>
 
-                                ))
-                            }
-                        </ul>
+                                        ))
+                                    }
+                                </ul>
+                            </div>
+                        </Row>
+                    : 
+                    <div className="p-3 text-center">
+                        <h3>Oops.. You don't have access to this page. </h3>
                     </div>
-                </Row>
+                }
             </Container>
         </section>
 

@@ -32,10 +32,10 @@ const Users = ( ) => {
 
                             <tbody>
                                 {
-                                    loading ? <tr><td><h5 className="pt-5 fw-bold">Loading...</h5> </td></tr>
+                                    loading ? <tr><td colSpan="4"><h5 className="pt-5 fw-bold">Loading...</h5> </td></tr>
                                     : usersData?.map(user => (
                                         <tr key={user.uid}>
-                                            <td><img src={user.photoURL} alt="" /></td>
+                                            <td><img src={user.photoURL} alt="" style={{ 'width': '80px' }}/></td>
                                             <td>{user.displayName}</td>
                                             <td>{user.email}</td>
                                             <td> 
