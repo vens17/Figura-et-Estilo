@@ -38,7 +38,7 @@ const Checkout = ( ) => {
     const totalQty = useSelector(state => state.cart.totalQuantity)
     const totalAmount = useSelector(state => state.cart.totalAmount)
 
-    const checkout = async () => {       
+    const placeOrder = async () => {       
         try{
             const userRef = doc(db, "users", currentUser.uid);
             
@@ -114,7 +114,7 @@ const Checkout = ( ) => {
                                     </span>
                                 </h6>
                                 <h4>Total Cost: <span>Php {totalAmount}</span></h4>
-                                <button type="submit" className="buy__btn auth__btn w-100" onClick={checkout}>Place Order</button>
+                                <button type="submit" className="buy__btn auth__btn w-100" onClick={placeOrder}>Place Order</button>
                             </div>
                         </Col>
                     </Row>

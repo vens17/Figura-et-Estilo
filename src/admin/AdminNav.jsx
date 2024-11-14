@@ -74,10 +74,15 @@ const AdminNav = () => {
                                 </ul>
                             </div>
                         </Row>
-                    : 
-                    <div className="p-3 text-center">
-                        <h3>Oops.. You don't have access to this page. </h3>
-                    </div>
+                    : ''
+                    
+                }
+                {
+                    currentUser?.type === 'buyer' ?
+                        <div className="p-3 text-center">
+                            <h3>Oops.. You don't have access to this page. </h3>
+                        </div>
+                    : ''
                 }
             </Container>
         </section>

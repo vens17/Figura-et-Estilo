@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 
 import { motion } from 'framer-motion';
 
@@ -41,9 +42,14 @@ const addToCart = () => {
             </div>
             <div className="product__card-bottom d-flex align-items-center justify-content-between p-2">
                 <span className="price">Php {item.price}</span>
-                <motion.span whileTap={{ scale: 1.2 }} onClick={addToCart}>
-                    <i className="ri-add-line"></i>
-                </motion.span>
+
+                {
+                    _.includes(window.location.pathname, 'shop') ? 
+                        <motion.span whileTap={{ scale: 1.2 }} onClick={addToCart}>
+                            <i className="ri-add-line"></i>
+                        </motion.span>
+                    : ''
+                }
             </div>
         </div>
         </Col>

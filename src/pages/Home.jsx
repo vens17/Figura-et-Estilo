@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
@@ -6,7 +6,6 @@ import Helmet from "../components/Helmet/Helmet";
 import "../styles/home.css";
 import { Container, Row, Col } from "reactstrap";
 import clothesImg from '../assets/images/group-clothes.png'
-import Services from "../services/Services";
 import ProductsList from "../components/UI/ProductsList";
 import Clock from "../components/UI/Clock";
 import useGetData from "../custom-hooks/useGetData";
@@ -16,41 +15,41 @@ const Home = ( ) => {
     const {data: products, loading} = useGetData('products')
 
     //ito naman for itemsData or para sa products
-    const [trendingProducts, setTrendingProducts] = useState([])
-    const [bestSalesItems, setBestSalesItems] = useState([])
+    // const [trendingProducts, setTrendingProducts] = useState([])
+    // const [bestSalesItems, setBestSalesItems] = useState([])
 
     // ito naman for itemsData or para sa products sa part ng new arrivals
-    const [jumpsuitProducts, setJumpsuitProducts] = useState([])
-    const [skirtsProducts, setSkirtsProducts] = useState([])
-    const [popularProducts, setPopularProducts] = useState([])
+    // const [jumpsuitProducts, setJumpsuitProducts] = useState([])
+    // const [skirtsProducts, setSkirtsProducts] = useState([])
+    // const [popularProducts, setPopularProducts] = useState([])
 
     // sa may homepage 'to
     const year = new Date().getFullYear()
 
-    useEffect(() =>
-        {
-            // tops
-            const filteredTrendingProducts = products.filter((item) => item.category === 'tops');
+    // useEffect(() =>
+    //     {
+    //         // tops
+    //         const filteredTrendingProducts = products.filter((item) => item.category);
 
-            //jorts
-            const filteredBestSalesItems = products.filter((item) => item.category === 'jorts');
+    //         //jorts
+    //         const filteredBestSalesItems = products.filter((item) => item.category);
 
-            //jumpsuits
-            const filteredJumpsuitProducts = products.filter((item) => item.category === 'jumpsuit');
+    //         //jumpsuits
+    //         const filteredJumpsuitProducts = products.filter((item) => item.category);
 
-            //skirts
-            const filteredSkirtProducts = products.filter((item) => item.category === 'skirts');
+    //         //skirts
+    //         const filteredSkirtProducts = products.filter((item) => item.category);
 
-            //jumper && popular products
-            const filteredJumperProducts = products.filter((item) => item.category === 'jumper');
+    //         //jumper && popular products
+    //         const filteredJumperProducts = products.filter((item) => item.category);
 
-            setTrendingProducts(filteredTrendingProducts);
-            setBestSalesItems(filteredBestSalesItems);
-            setSkirtsProducts(filteredSkirtProducts);
-            setJumpsuitProducts(filteredJumpsuitProducts);
-            setPopularProducts(filteredJumperProducts);
+    //         setTrendingProducts(filteredTrendingProducts);
+    //         setBestSalesItems(filteredBestSalesItems);
+    //         setSkirtsProducts(filteredSkirtProducts);
+    //         setJumpsuitProducts(filteredJumpsuitProducts);
+    //         setPopularProducts(filteredJumperProducts);
 
-        }, [products] );
+    //     }, [products] );
 
     return <Helmet title={'Home'}>
         <section className="hero__section">
@@ -81,8 +80,6 @@ const Home = ( ) => {
             </Container>
         </section>
 
-        <Services />
-
         <section className="trending__products">
             <Container>
                 <Row>
@@ -92,7 +89,7 @@ const Home = ( ) => {
 
                     {
                         loading ? (<h5 className="fw-bold">Loading...</h5>) :
-                        (<ProductsList data={trendingProducts}/>)
+                        (<ProductsList data={products}/>)
                     }
 
                 </Row>
@@ -109,7 +106,7 @@ const Home = ( ) => {
 
                     {
                         loading ? (<h5 className="fw-bold">Loading...</h5>) :
-                        (<ProductsList data={bestSalesItems}/>)
+                        (<ProductsList data={products}/>)
                     }
 
                 </Row>
@@ -153,12 +150,7 @@ const Home = ( ) => {
 
                     {
                         loading ? (<h5 className="fw-bold">Loading...</h5>) :
-                        (<ProductsList data={jumpsuitProducts}/>)
-                    }
-
-                    {
-                        loading ? (<h5 className="fw-bold">Loading...</h5>) :
-                        (<ProductsList data={skirtsProducts}/>)
+                        (<ProductsList data={products}/>)
                     }
 
                 </Row>
@@ -174,7 +166,7 @@ const Home = ( ) => {
 
                     {
                         loading ? (<h5 className="fw-bold">Loading...</h5>) :
-                        (<ProductsList data={popularProducts}/>)
+                        (<ProductsList data={products}/>)
                     }
 
                 </Row>

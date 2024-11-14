@@ -31,25 +31,44 @@ const AllProducts = () => {
                                         <th>Image</th>
                                         <th>Product Name</th>
                                         <th>Category</th>
+                                        <th>Sizes</th>
+                                        <th>Gender</th>
+                                        <th>Colors</th>
                                         <th>Price</th>
-                                        <th>
-                                            Action
-                                        </th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
                                     {
-                                        loading ? (<tr><td colSpan={5}><h4 className="py-5 text-center fw-bold">Loading...</h4></td></tr>) : 
+                                        loading ? (<tr><td colSpan={8}><h4 className="py-5 text-center fw-bold">Loading...</h4></td></tr>) : 
                                         
                                             (productsData.map(item => (
                                                 <tr key={item.id}>
                                                     <td> <img src={item.imgUrl} alt="" style={{ 'width': '80px' }}/> </td>
                                                     <td>{item.itemProductName}</td>
-                                                    <td>{item.category}</td>
+                                                    <td>{item.category}</td>                                                    
+                                                    <td> 
+                                                        {
+                                                            item.sizes ?
+                                                                item.sizes.map(o => 
+                                                                    <button type="button" className="btn btn-sm btn-dark me-3" disabled>{o.toUpperCase()}</button>
+                                                                )
+                                                            : ''
+                                                        }
+                                                    </td>
+                                                    <td>{item.gender}</td>
+                                                    <td>
+                                                        {
+                                                            item.colors ?
+                                                                item.colors.map(o => 
+                                                                    <div className="color-holder" style={{ background: o }}></div>
+                                                                )
+                                                            : ''
+                                                        }
+                                                    </td>
                                                     <td>{item.price}</td>
                                                     <td> 
-                                                        {" "}
                                                         <button onClick={() => 
                                                             {deleteProduct(item.id)}} 
                                                             className="btn btn-danger">

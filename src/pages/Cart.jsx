@@ -27,7 +27,9 @@ const Cart = ( ) => {
                                 <thead>
                                     <tr>
                                         <th>Image</th>
-                                        <th>Title</th>
+                                        <th>Product</th>
+                                        <th>Size</th>
+                                        <th>Color</th>
                                         <th>Price</th>
                                         <th>Quantity</th>
                                         <th>Delete</th>
@@ -35,7 +37,8 @@ const Cart = ( ) => {
                                 </thead>
 
                                 <tbody>
-                                    {cartItems.map((item,index) => (
+                                    {
+                                        cartItems.map((item,index) => (
 
                                         <Tr item={item} key={index}/>
 
@@ -80,8 +83,14 @@ const Tr = ({item}) => {
         <tr>
             <td><img src={item.imgUrl} alt="" /></td>
             <td>{item.productName}</td>
+            <td> 
+                {item.size ? <button type="button" className="btn btn-sm btn-dark me-3" disabled>{item.size.toUpperCase()}</button> : ''}
+            </td>
+            <td>
+                {item.color ? <div className="color-holder" style={{ background: item.color }}></div> : ''}
+            </td>
             <td>Php {item.price}</td>
-            <td>{item.quantity}px</td>
+            <td>{item.quantity}x</td>
             <td>
                 <motion.i 
                     whileTap={{ scale: 1.2 }} 

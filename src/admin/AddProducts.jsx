@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Form, FormGroup } from "reactstrap";
 import { toast } from "react-toastify";
+import { sizesData, genderData } from "../assets/data/attributesData"
 import { db, storage } from "../firebase.config";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { collection, addDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
+import "../styles/add-product.css";
 
 const AddProducts = () => {
 
@@ -13,6 +15,9 @@ const AddProducts = () => {
     const [enterCategory, setEnterCategory] = useState('');
     const [enterPrice, setEnterPrice] = useState('');
     const [enterProductImg, setEnterProductImg] = useState(null);
+    const [colors, setColor] = useState([]);
+    const [gender, setGender] = useState([]);
+    const [sizes, setSize] = useState([]);    
     const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate()
@@ -66,6 +71,9 @@ const AddProducts = () => {
                             category: enterCategory,
                             price: enterPrice,
                             imgUrl: downloadURL,
+                            colors,
+                            sizes,
+                            gender
                         });
                     });
                 }
@@ -74,8 +82,7 @@ const AddProducts = () => {
             setLoading(false)
             
             toast.success('Product added successfully.');
-            navigate("/dashboard/all-products")
-
+            navigate("/dashboard/all-products");
         } catch (error) {
 
             setLoading(false)
@@ -87,77 +94,147 @@ const AddProducts = () => {
 
     }
 
+    const handleSizeChange = (e) => {
+        if(e.target.checked) {
+            setSize(sizes => [...sizes,  e.target.value]);
+        } else setSize(sizes.filter(s => s !== e.target.value));       
+    }
+
+    const addColor = () => {
+        setColor(colors => [...colors, '#ffffff']);
+    }
+    const handleColorChange = (color, index) => {
+        const newValue = colors.map((c, i) => {
+            return i === index ? color : c;
+        });
+
+        setColor(newValue);
+    }
+
     return (
         <section>
-            <Container>
-                <Row>
-                    <Col lg='12'>
-                        { 
-                            loading ? (<h4 className="py-5 ">Loading...</h4>) : 
-                            (<>
-                                <h4 className="mb-5">Add product</h4>
-                                <Form onSubmit={addProduct}>
-                                    <FormGroup className="form__group">
-                                        <span>Product Name</span>
-                                        <input type="text" 
-                                        placeholder="Product Name" 
-                                        value={enterProductName} 
-                                        onChange={e => setEnterProductName(e.target.value)} required />
+             <Container>
+                <Form onSubmit={addProduct}>
+                    { 
+                        loading ? (<h4 className="py-5 ">Loading...</h4>) : 
+                        <Row>
+                            <h4 className="mb-5">Add product</h4>
+
+                            <Col lg='8'>
+                                <FormGroup className="form__group">
+                                    <span>Product Name</span>
+                                    <input type="text" 
+                                    placeholder="Product Name" 
+                                    value={enterProductName} 
+                                    onChange={e => setEnterProductName(e.target.value)} required />
+                                </FormGroup>
+
+                                <FormGroup className="form__group">
+                                    <span>Product Description</span>
+                                    <input type="text" 
+                                    placeholder="Product Description" 
+                                    value={enterProductDesc} 
+                                    onChange={e => setEnterProductDesc(e.target.value)} required />
+                                </FormGroup>
+
+                                <div className="d-flex align-items-center justify-content-between gap-5">
+                                    <FormGroup>
+                                        <h6 className="mb-3" style={{ color: 'coral', fontWeight: '600' }}>Sizes</h6>
+                                        
+                                        {
+                                            sizesData.map(item => (
+                                                <div className="form-check form-check-inline" key={item.id}>
+                                                    <input type="checkbox" className="btn-check" id={item.id} value={item.id} onClick={handleSizeChange} autoComplete="off" />
+                                                    <label className="btn btn-outline-secondary" htmlFor={item.id}>{ item.text }</label>
+                                                </div>
+                                            ) )
+                                        }
                                     </FormGroup>
-
-                                    <FormGroup className="form__group">
-                                        <span>Product Description</span>
-                                        <input type="text" 
-                                        placeholder="Product Description" 
-                                        value={enterProductDesc} 
-                                        onChange={e => setEnterProductDesc(e.target.value)} required />
+                                    <FormGroup>
+                                        <h6 className="mb-3" style={{ color: 'coral', fontWeight: '600' }}>Gender</h6>
+                                        
+                                        {
+                                            genderData.map(item => (
+                                                <div className="form-check form-check-inline" key={item.id}>
+                                                    <input className="form-check-input" type="radio" name="gender-options" id={item.id} value={item.id} onClick={e => setGender(e.target.value)} />
+                                                    <label className="form-check-label" htmlFor={item.id}>{ item.text }</label>
+                                                </div>
+                                            ) )
+                                        }
                                     </FormGroup>
+                                </div>
 
-                                    <div className="d-flex align-items-center justify-content-between gap-5">
-                                    <FormGroup className="form__group w-50">
-                                        <span>Product Price</span>
-                                        <input type="number" 
-                                        placeholder="Php 300" 
-                                        value={enterPrice} 
-                                        onChange={e => setEnterPrice(e.target.value)} required />
+                                <div className="d-flex align-items-center justify-content-between gap-5">
+                                    <FormGroup className="w-50">
+                                        <h6 className="mb-3" style={{ color: 'coral', fontWeight: '600' }}>Color</h6>
+                                        
+                                        <table className="table">
+                                            <tbody>
+                                                {
+                                                    colors.map((color, index) => (
+                                                        <tr key={index}>
+                                                            <td>
+                                                                <div className="color-holder" style={{ background: color }}>
+                                                                    <input type="color" value={color} onChange={e => handleColorChange(e.target.value, index)} className="hidden" />
+                                                                </div>
+                                                            </td>
+                                                            <td>{color}</td>
+                                                            <td><small className="text-danger" style={{ cursor: 'pointer' }} onClick={() => setColor( colors.filter(c => c !== color) )}>remove</small></td>
+                                                        </tr>
+                                                    ) )
+                                                }
+                                                <tr>
+                                                    <td colSpan={3}>
+                                                        <small style={{ cursor: 'pointer' }} onClick={addColor}>add color</small>
+                                                    </td>
+                                                </tr>                                    
+                                            </tbody>
+                                        </table>
                                     </FormGroup>
+                                </div>
+                            </Col>
 
-                                    <FormGroup className="form__group w-50">
-                                        <span>Category</span>
-                                        <div className="filter__widget">
-                                            <select className="w-100 p-2"
-                                                value={enterCategory} 
-                                                onChange={e => setEnterCategory(e.target.value)}>
+                            <Col lg='4'>
+                                <FormGroup className="form__group">
+                                    <span>Product Price</span>
+                                    <input type="number" 
+                                    placeholder="Php 300" 
+                                    value={enterPrice} 
+                                    onChange={e => setEnterPrice(e.target.value)} required />
+                                </FormGroup>
+                                
+                                <FormGroup className="form__group">
+                                    <span>Product Category</span>
+                                    <div className="filter__widget">
+                                        <select className="w-100 p-2"
+                                            value={enterCategory} 
+                                            onChange={e => setEnterCategory(e.target.value)}>
 
-                                                <option>Select Category</option>
-                                                <option value="bottoms">Bottoms</option>
-                                                <option value="jumper">Jumper</option>
-                                                <option value="skirts">Skirts</option>
-                                                <option value="jumpsuit">Jumpsuit</option>
-                                                <option value="jorts">Jorts</option>
-                                                <option value="tops">Tops</option>
-
-                                            </select>
-                                        </div>
-                                    </FormGroup>
-
+                                            <option>Select Category</option>
+                                            <option value="bottoms">Bottoms</option>
+                                            <option value="jumper">Jumper</option>
+                                            <option value="skirts">Skirts</option>
+                                            <option value="jumpsuit">Jumpsuit</option>
+                                            <option value="jorts">Jorts</option>
+                                            <option value="tops">Tops</option>
+                                            <option value="accessories">Accessories</option>
+                                        </select>
                                     </div>
+                                </FormGroup>
 
-                                    <div>
-                                    <FormGroup className="form__group">
-                                        <span>Product Image</span>
-                                        <input type="file" 
-                                        onChange={e => setEnterProductImg(e.target.files[0])} required />
-                                    </FormGroup>
-                                    </div>
+                                <FormGroup className="form__group">
+                                    <span>Product Image</span>
+                                    <input type="file" 
+                                    onChange={e => setEnterProductImg(e.target.files[0])} required />
+                                </FormGroup>
 
+                                <div className="d-flex justify-content-end mb-5">
                                     <button className="buy__btn" type="submit">Add Product</button>
-
-                                </Form>
-                            </>)
-                        }
-                    </Col>
-                </Row>
+                                </div>
+                            </Col>
+                        </Row>
+                    }
+                </Form>
             </Container>
         </section>
     )

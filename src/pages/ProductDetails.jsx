@@ -23,6 +23,8 @@ const ProductDetails = ( ) => {
     const dispatch = useDispatch()
 
     const [rating, setRating] = useState(null)
+    const [color, setcolor] = useState(null)
+    const [size, setSize] = useState(null)
 
     const {id} = useParams();
 
@@ -54,7 +56,11 @@ const ProductDetails = ( ) => {
             reviews, 
             description, 
             shortDesc, 
-            category} = product;
+            category,
+            colors,
+            gender,
+            sizes
+        } = product;
 
     const relatedProducts = products.filter(item => item.category === category);
 
@@ -81,11 +87,12 @@ const ProductDetails = ( ) => {
                 imgUrl,
                 itemProductName,
                 price,
+                color,
+                size
             })
         );
 
         toast.success("item added successfully to the cart");
-
     };
 
     useEffect( () => {
@@ -130,10 +137,44 @@ const ProductDetails = ( ) => {
                                     
                                 </div>
 
-                                <div className="d-flex align-items-center gap-5">
-                                <span className="product__price">Php {price}</span>
-                                <span>Category: {category?.toUpperCase()}</span>
+                                <h3 className="product__price mb-4">Php {price}</h3>
+
+                                <div className="d-flex align-items-center gap-5 mb-3">
+                                    <span>Category: {category?.toUpperCase()}</span>
+                                    { gender ? <button type="button" className="btn btn-sm btn-dark me-3" disabled>{gender?.toUpperCase()}</button> : '' }
                                 </div>
+
+                                {
+                                    sizes ? 
+                                    <div className="mb-4">
+                                        <h6 className="mb-3" style={{ fontWeight: '600' }}>Select Size</h6>
+                                        
+                                        {
+                                            sizes.map(o => (
+                                                <div className="form-check form-check-inline" key={o}>
+                                                    <input className="form-check-input" type="radio" name="size-options" id={o} value={o} onClick={e => setSize(e.target.value)} />
+                                                    <label className="form-check-label" htmlFor={o}>{ o.toUpperCase() }</label>
+                                                </div>
+                                            ))
+                                        }
+                                    </div>
+                                    : ''
+                                }
+
+                                {
+                                    colors ? 
+                                    <div className="mb-4">
+                                        <h6 className="mb-3" style={{ fontWeight: '600' }}>Select Color</h6>
+                                        
+                                        {
+                                            colors.map(o => (
+                                                <div className={o === color ? 'color-holder active' : 'color-holder'} style={{ background: o, cursor: 'pointer' }} onClick={() => setcolor(o)}></div>
+                                            ))
+                                        }
+                                    </div>
+                                    : ''
+                                }
+
                                 <p className="mt-3">{shortDesc}</p>
 
                                 <motion.button whileTap={{ scale: 1.2 }} 
