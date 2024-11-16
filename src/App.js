@@ -6,9 +6,9 @@ import useScript from "./components/Script/useScript";
 function App() {
  
 
-  return <Layout> 
+  return <Layout>
     {
-       useScript('//js.hs-scripts.com/48170833.js', 'body', true, 'hs-script-loader')
+       useScript('//js-na1.hs-scripts.com/48170833.js', 'body', true, 'hs-script-loader')
     }
     </Layout>;
 }
