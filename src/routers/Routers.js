@@ -2,7 +2,6 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 import Home from '../pages/Home'
 import Shop from '../pages/Shop'
 import Cart from '../pages/Cart'
-import ItemAr from '../pages/ItemAr'
 import ProductDetails from '../pages/ProductDetails'
 import Checkout from '../pages/Checkout'
 import Aboutus from '../pages/Aboutus'
@@ -28,7 +27,6 @@ const Routers = ( ) => {
         <Route path='shop/:id' element={<ProductDetails />} />
         <Route path='category/:category' element={<Shop />} />
         {/* <Route path='cart' element={<Cart />}/> */}
-        <Route path='ar' element={<ItemAr />}/>
 
         <Route path='about-us' element={<Aboutus />} />
         <Route path='contact-us' element={<Contactus />} />
