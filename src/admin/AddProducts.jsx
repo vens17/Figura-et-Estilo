@@ -15,9 +15,11 @@ const AddProducts = () => {
     const [enterCategory, setEnterCategory] = useState('');
     const [enterPrice, setEnterPrice] = useState('');
     const [enterProductImg, setEnterProductImg] = useState(null);
+    const [productStock, setProductStock] = useState('');
     const [colors, setColor] = useState([]);
     const [gender, setGender] = useState([]);
-    const [sizes, setSize] = useState([]);    
+    const [sizes, setSize] = useState([]);
+    const [forKids, setForKids] = useState(false);
     const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate()
@@ -59,30 +61,38 @@ const AddProducts = () => {
             );}*/
 
             // the original code
+            let next = function(snapshot) {};
+            const error = () => {  toast.error("image not uploaded"); }
+            const complete = () => {
+                getDownloadURL(uploadTask.snapshot.ref).then(async downloadURL => {
+                    await addDoc (docRef, {
+                        itemProductName: enterProductName,
+                        productDesc: enterProductDesc,
+                        category: enterCategory,
+                        price: enterPrice,
+                        imgUrl: downloadURL,
+                        productStock,
+                        forKids,
+                        colors,
+                        sizes,
+                        gender
+                    });
+                });
+
+                toast.success('Product added successfully.');
+                navigate("/dashboard/all-products");
+            }
+
             uploadTask.on(
                 () => {
                     toast.error("image not uploaded");
                 },
-                () => {
-                    getDownloadURL(uploadTask.snapshot.ref).then(async downloadURL => {
-                        await addDoc (docRef, {
-                            itemProductName: enterProductName,
-                            productDesc: enterProductDesc,
-                            category: enterCategory,
-                            price: enterPrice,
-                            imgUrl: downloadURL,
-                            colors,
-                            sizes,
-                            gender
-                        });
-                    });
-                }
+                next,
+                error,
+                complete
             );
-
-            setLoading(false)
             
-            toast.success('Product added successfully.');
-            navigate("/dashboard/all-products");
+            setLoading(false)                    
         } catch (error) {
 
             setLoading(false)
@@ -137,8 +147,8 @@ const AddProducts = () => {
                                     onChange={e => setEnterProductDesc(e.target.value)} required />
                                 </FormGroup>
 
-                                <div className="d-flex align-items-center justify-content-between gap-5">
-                                    <FormGroup>
+                                <div className="d-flex gap-5 mb-3">
+                                    <FormGroup className="w-50">
                                         <h6 className="mb-3" style={{ color: 'coral', fontWeight: '600' }}>Sizes</h6>
                                         
                                         {
@@ -164,7 +174,7 @@ const AddProducts = () => {
                                     </FormGroup>
                                 </div>
 
-                                <div className="d-flex align-items-center justify-content-between gap-5">
+                                <div className="d-flex gap-5">
                                     <FormGroup className="w-50">
                                         <h6 className="mb-3" style={{ color: 'coral', fontWeight: '600' }}>Color</h6>
                                         
@@ -191,17 +201,33 @@ const AddProducts = () => {
                                             </tbody>
                                         </table>
                                     </FormGroup>
+                                    <FormGroup>
+                                        <h6 className="mb-3" style={{ color: 'coral', fontWeight: '600' }}>For Kids</h6>
+                                        <div className="form-check form-check-inline">
+                                            <input className="form-check-input" type="checkbox" name="gender-options" id="for-kids" onClick={e => setForKids(e.target.checked)} />
+                                            <label className="form-check-label" htmlFor="for-kids">Check this box if the product is for kids.</label>
+                                        </div>
+                                    </FormGroup>
                                 </div>
                             </Col>
 
                             <Col lg='4'>
-                                <FormGroup className="form__group">
-                                    <span>Product Price</span>
-                                    <input type="number" 
-                                    placeholder="Php 300" 
-                                    value={enterPrice} 
-                                    onChange={e => setEnterPrice(e.target.value)} required />
-                                </FormGroup>
+                                <div className="d-flex gap-5">
+                                    <FormGroup className="form__group">
+                                        <span>Product Price</span>
+                                        <input type="number" 
+                                        placeholder="Php 300" 
+                                        value={enterPrice} 
+                                        onChange={e => setEnterPrice(e.target.value)} required />
+                                    </FormGroup>
+                                    <FormGroup className="form__group">
+                                        <span>Product Stock</span>
+                                        <input type="number"
+                                        min={0}
+                                        value={productStock} 
+                                        onChange={e => setProductStock(e.target.value)} required />
+                                    </FormGroup>
+                                </div>
                                 
                                 <FormGroup className="form__group">
                                     <span>Product Category</span>

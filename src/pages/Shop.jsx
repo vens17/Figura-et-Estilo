@@ -1,5 +1,5 @@
 import React, {useState, useEffect } from "react";
-
+import { useParams } from "react-router-dom";
 import CommonSection from "../components/UI/CommonSection";
 import Helmet from '../components/Helmet/Helmet'
 import { Container, Row, Col } from "reactstrap";
@@ -14,12 +14,30 @@ import ProductList from '../components/UI/ProductsList'
 
 const Shop = ( ) => {
 
+    const { category } = useParams();
+
     // code para sa item products na nasa store/shop
     const [productsData, setProductsData] = useState ([])
 
     const [filteredProducts, setProducts] = useState([]);
 
     const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        if(category){
+            if(_.includes(['men', 'woman', 'unisex'], category)){
+                setProducts(_.filter(productsData, o => _.includes([category, 'unisex'], o.gender)))
+            }
+
+            if(category === 'kids'){
+                setProducts(_.filter(productsData, o => o.forKids))
+            }
+
+            if(category === 'accessories'){
+                setProducts(_.filter(productsData, o => o.category === category))
+            }
+        }
+    }, [productsData, category])
 
     useEffect(() => {
         const getProduct = async() => {
@@ -117,7 +135,7 @@ const Shop = ( ) => {
 
     return (
         <Helmet title='Shop'>
-            <CommonSection title="Products"/>
+            <CommonSection title={category ? category.toUpperCase() : "Products"}/>
 
             <section>
                 <Container>

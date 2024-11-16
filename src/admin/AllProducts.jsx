@@ -32,6 +32,7 @@ const AllProducts = () => {
                                         <th>Product Name</th>
                                         <th>Category</th>
                                         <th>Sizes</th>
+                                        <th>Stocks</th>
                                         <th>Gender</th>
                                         <th>Colors</th>
                                         <th>Price</th>
@@ -52,17 +53,18 @@ const AllProducts = () => {
                                                         {
                                                             item.sizes ?
                                                                 item.sizes.map(o => 
-                                                                    <button type="button" className="btn btn-sm btn-dark me-3" disabled>{o.toUpperCase()}</button>
+                                                                    <button type="button" className="btn btn-sm btn-dark me-3" disabled key={o}>{o.toUpperCase()}</button>
                                                                 )
                                                             : ''
                                                         }
                                                     </td>
+                                                    <td>{item.stocks ?? 0}</td>
                                                     <td>{item.gender}</td>
                                                     <td>
                                                         {
                                                             item.colors ?
                                                                 item.colors.map(o => 
-                                                                    <div className="color-holder" style={{ background: o }}></div>
+                                                                    <div className="color-holder" style={{ background: o }} key={o}></div>
                                                                 )
                                                             : ''
                                                         }

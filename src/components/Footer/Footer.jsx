@@ -55,13 +55,13 @@ const Footer = ( ) => {
                 <div className="footer__links">
                     <h4 className="links__titles">Useful Links</h4>
                     <ListGroup className="mb-3">
-                        <ListGroupItem className="ps-0 border-0">
+                        {/* <ListGroupItem className="ps-0 border-0">
                             <Link to="/shop">Shop</Link>
                         </ListGroupItem>
 
                         <ListGroupItem className="ps-0 border-0">
                             <Link to="/cart">Cart</Link>
-                        </ListGroupItem>
+                        </ListGroupItem> */}
 
                         <ListGroupItem className="ps-0 border-0">
                             <Link to="/login">Login</Link>

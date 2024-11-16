@@ -17,23 +17,36 @@ const nav__links = [
         path: 'home',
         display: 'Home'
     },
-
     {
-        path: 'shop',
-        display: 'Shop'
+        path: 'category/men',
+        display: 'Men'
     },
-
     {
-        path: 'cart',
-        display: 'Cart'
+        path: 'category/woman',
+        display: 'Woman'
     },
-
+    {
+        path: 'category/kids',
+        display: 'Kids'
+    },
+    {
+        path: 'category/accessories',
+        display: 'Accessories'
+    },
+    {
+        path: 'about-us',
+        display: 'About Us'
+    },
+    {
+        path: 'contact-us',
+        display: 'Contact Us'
+    },
 ]
 
 const Header = ( ) => {
 
     const headerRef = useRef(null);
-    const totalQuantity = useSelector(state => state.cart.totalQuantity)
+    // const totalQuantity = useSelector(state => state.cart.totalQuantity)
 
     const profileActionRef = useRef(null)
 
@@ -71,9 +84,9 @@ const Header = ( ) => {
 
     const menuToggle = () => menuRef.current.classList.toggle('active__menu')
 
-    const navigateToCart = () => {
-        navigate("/cart");
-    };
+    // const navigateToCart = () => {
+    //     navigate("/cart");
+    // };
 
     const toggleProfileActions = () => profileActionRef.current.classList.toggle('show__profileActions')
 
@@ -105,11 +118,13 @@ const Header = ( ) => {
                     <div className="nav__icons">
 
 
+                        <span className="fav__icon"><i className="ri-camera-line"></i>
+                        </span>
                         <span className="fav__icon"><i className="ri-heart-line"></i>
                         </span>
-                        <span className="cart__icon" onClick={navigateToCart}><i className="ri-shopping-bag-line"></i>
+                        {/* <span className="cart__icon" onClick={navigateToCart}><i className="ri-shopping-bag-line"></i>
                         <span className="badge">{totalQuantity}</span>
-                        </span>
+                        </span> */}
 
 
                         <div className="profile">

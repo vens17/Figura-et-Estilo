@@ -2,8 +2,11 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 import Home from '../pages/Home'
 import Shop from '../pages/Shop'
 import Cart from '../pages/Cart'
+import ItemAr from '../pages/ItemAr'
 import ProductDetails from '../pages/ProductDetails'
 import Checkout from '../pages/Checkout'
+import Aboutus from '../pages/Aboutus'
+import Contactus from '../pages/Contactus'
 import Login from '../pages/Login'
 import Signup from '../pages/Signup'
 import ProtectedRoute from './ProtectedRoute'
@@ -21,12 +24,17 @@ const Routers = ( ) => {
     <Routes>
     <Route path="/" element={<Navigate to='home' />} />
         <Route path='home' element={<Home />} />
-        <Route path='shop' element={<Shop />} />
+        <Route path='shop' element={<Shop />} />        
         <Route path='shop/:id' element={<ProductDetails />} />
-        <Route path='cart' element={<Cart />}/>
+        <Route path='category/:category' element={<Shop />} />
+        {/* <Route path='cart' element={<Cart />}/> */}
+        <Route path='ar' element={<ItemAr />}/>
+
+        <Route path='about-us' element={<Aboutus />} />
+        <Route path='contact-us' element={<Contactus />} />
 
         <Route path="/*" element={<ProtectedRoute/>}>
-            <Route path="checkout" element={<Checkout/>} />
+            {/* <Route path="checkout" element={<Checkout/>} /> */}
             
             {
                 currentUser?.type === 'seller' ?
