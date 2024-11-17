@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Form, FormGroup } from "reactstrap";
 import { toast } from "react-toastify";
 import { sizesData, genderData } from "../assets/data/attributesData"
 import { db, storage } from "../firebase.config";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { collection, addDoc } from "firebase/firestore";
-import { useNavigate } from "react-router-dom";
+import { doc, collection, getDoc, addDoc, updateDoc } from "firebase/firestore";
+import { useParams, useNavigate } from "react-router-dom";
 import "../styles/add-product.css";
+import _ from 'lodash';
 
 const AddProducts = () => {
 
@@ -22,7 +23,53 @@ const AddProducts = () => {
     const [forKids, setForKids] = useState(false);
     const [loading, setLoading] = useState(false);
 
-    const navigate = useNavigate()
+    const { id } = useParams();
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if(id){
+            setLoading(true);
+            const docRef = doc(db, 'products', id)
+            const getProduct = async() => {
+                const docSnap = await getDoc(docRef);
+
+                if (docSnap.exists()) {
+                    const {
+                        itemProductName, 
+                        productStock,
+                        price, 
+                        productDesc, 
+                        category,
+                        forKids,
+                        colors,
+                        gender,
+                        sizes
+                    } = docSnap.data();
+                    
+                    setEnterProductName(itemProductName)
+                    setEnterProductDesc(productDesc)
+                    setEnterCategory(category)
+                    setEnterPrice(price)
+                    setProductStock(productStock)
+                    setColor(colors)
+                    setGender(gender)
+                    setSize(sizes)
+                    setForKids(forKids)
+                }
+
+                else {
+                    console.log('no product')
+                }
+
+                setLoading(false);
+            }
+
+            getProduct();
+        }
+
+    }, [id])
+
 
     const addProduct = async(e) => {
         e.preventDefault();
@@ -31,66 +78,121 @@ const AddProducts = () => {
         // ==== add product to the firebase database ====
 
         try {
-            
-            const docRef = await collection(db, 'products')
-            const storageRef = ref(storage, `productImages/${Date.now() + enterProductImg.name}`)
-            const uploadTask = uploadBytesResumable(storageRef, enterProductImg)
+            // edit products
+            if(id){
+                const productRef = doc(db, "products", id);
+                
+                if(enterProductImg){
+                    const storageRef = ref(storage, `productImages/${Date.now() + enterProductImg.name}`)
+                    const uploadTask = uploadBytesResumable(storageRef, enterProductImg)
 
-            // the product was added and saved to the Firestore database.
-            /*{uploadTask.on(
-                'state_changed',
-                (snapshot) => {
-                    // Progress function can go here if needed
-                },
-                (error) => {
-                    // Handle unsuccessful uploads
-                    toast.error('Image upload failed.');
-                },
-                async () => {
-                    // Handle successful uploads
-                    const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
-                    await addDoc(docRef, {
+                    let next = function() {};
+                    const error = () => {  toast.error("image not uploaded"); }
+                    const complete = () => {
+                        getDownloadURL(uploadTask.snapshot.ref).then(async downloadURL => {
+                            await updateDoc(productRef, {
+                                itemProductName: enterProductName,
+                                productDesc: enterProductDesc,
+                                category: enterCategory,
+                                price: enterPrice,
+                                imgUrl: downloadURL,
+                                productStock,
+                                forKids,
+                                colors,
+                                sizes,
+                                gender
+                            });
+                        });
+
+                        toast.success('Product successfully updated.');
+                        navigate("/dashboard/all-products");
+                    }
+
+                    uploadTask.on(
+                        () => {
+                            toast.error("image not uploaded");
+                        },
+                        next,
+                        error,
+                        complete
+                    );
+                } else {
+                    await updateDoc(productRef, {
                         itemProductName: enterProductName,
                         productDesc: enterProductDesc,
                         category: enterCategory,
                         price: enterPrice,
-                        imgUrl: downloadURL,
-                    });
-                    
-                }
-            );}*/
-
-            // the original code
-            let next = function(snapshot) {};
-            const error = () => {  toast.error("image not uploaded"); }
-            const complete = () => {
-                getDownloadURL(uploadTask.snapshot.ref).then(async downloadURL => {
-                    await addDoc (docRef, {
-                        itemProductName: enterProductName,
-                        productDesc: enterProductDesc,
-                        category: enterCategory,
-                        price: enterPrice,
-                        imgUrl: downloadURL,
                         productStock,
                         forKids,
                         colors,
                         sizes,
                         gender
                     });
-                });
 
-                toast.success('Product added successfully.');
-                navigate("/dashboard/all-products");
+                    toast.success('Product successfully updated.');
+                    navigate("/dashboard/all-products");
+                }
+            } else {
+                const docRef = await collection(db, 'products')
+                const storageRef = ref(storage, `productImages/${Date.now() + enterProductImg.name}`)
+                const uploadTask = uploadBytesResumable(storageRef, enterProductImg)
+
+                // the product was added and saved to the Firestore database.
+                /*{uploadTask.on(
+                    'state_changed',
+                    (snapshot) => {
+                        // Progress function can go here if needed
+                    },
+                    (error) => {
+                        // Handle unsuccessful uploads
+                        toast.error('Image upload failed.');
+                    },
+                    async () => {
+                        // Handle successful uploads
+                        const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+                        await addDoc(docRef, {
+                            itemProductName: enterProductName,
+                            productDesc: enterProductDesc,
+                            category: enterCategory,
+                            price: enterPrice,
+                            imgUrl: downloadURL,
+                        });
+                        
+                    }
+                );}*/
+
+                // the original code
+                let next = function() {};
+                const error = () => {  toast.error("image not uploaded"); }
+                const complete = () => {
+                    getDownloadURL(uploadTask.snapshot.ref).then(async downloadURL => {
+                        await addDoc (docRef, {
+                            itemProductName: enterProductName,
+                            productDesc: enterProductDesc,
+                            category: enterCategory,
+                            price: enterPrice,
+                            imgUrl: downloadURL,
+                            productStock,
+                            forKids,
+                            colors,
+                            sizes,
+                            gender
+                        });
+                    });
+
+                    toast.success('Product added successfully.');
+                    navigate("/dashboard/all-products");
+                }
+
+                uploadTask.on(
+                    () => {
+                        toast.error("image not uploaded");
+                    },
+                    next,
+                    error,
+                    complete
+                );
             }
-
-            uploadTask.on(
-                () => {
-                    toast.error("image not uploaded");
-                },
-                next,
-                error,
-                complete
-            );
             
             setLoading(false)                    
         } catch (error) {
@@ -119,7 +221,7 @@ const AddProducts = () => {
         });
 
         setColor(newValue);
-    }
+    }    
 
     return (
         <section>
@@ -128,7 +230,7 @@ const AddProducts = () => {
                     { 
                         loading ? (<h4 className="py-5 ">Loading...</h4>) : 
                         <Row>
-                            <h4 className="mb-5">Add product</h4>
+                            <h4 className="mb-5">{ id ? 'Edit' : 'Add'} product</h4>
 
                             <Col lg='8'>
                                 <FormGroup className="form__group">
@@ -154,7 +256,7 @@ const AddProducts = () => {
                                         {
                                             sizesData.map(item => (
                                                 <div className="form-check form-check-inline" key={item.id}>
-                                                    <input type="checkbox" className="btn-check" id={item.id} value={item.id} onClick={handleSizeChange} autoComplete="off" />
+                                                    <input type="checkbox" className="btn-check" id={item.id} value={item.id} defaultChecked={_.includes(sizes, item.id)} onClick={handleSizeChange} autoComplete="off" />
                                                     <label className="btn btn-outline-secondary" htmlFor={item.id}>{ item.text }</label>
                                                 </div>
                                             ) )
@@ -166,7 +268,7 @@ const AddProducts = () => {
                                         {
                                             genderData.map(item => (
                                                 <div className="form-check form-check-inline" key={item.id}>
-                                                    <input className="form-check-input" type="radio" name="gender-options" id={item.id} value={item.id} onClick={e => setGender(e.target.value)} />
+                                                    <input className="form-check-input" type="radio" name="gender-options" id={item.id} value={item.id} defaultChecked={gender === item.id} onClick={e => setGender(e.target.value)} />
                                                     <label className="form-check-label" htmlFor={item.id}>{ item.text }</label>
                                                 </div>
                                             ) )
@@ -204,7 +306,7 @@ const AddProducts = () => {
                                     <FormGroup>
                                         <h6 className="mb-3" style={{ color: 'coral', fontWeight: '600' }}>For Kids</h6>
                                         <div className="form-check form-check-inline">
-                                            <input className="form-check-input" type="checkbox" name="gender-options" id="for-kids" onClick={e => setForKids(e.target.checked)} />
+                                            <input className="form-check-input" type="checkbox" name="gender-options" id="for-kids" defaultChecked={forKids} onClick={e => setForKids(e.target.checked)} />
                                             <label className="form-check-label" htmlFor="for-kids">Check this box if the product is for kids.</label>
                                         </div>
                                     </FormGroup>
@@ -250,12 +352,16 @@ const AddProducts = () => {
 
                                 <FormGroup className="form__group">
                                     <span>Product Image</span>
-                                    <input type="file" 
-                                    onChange={e => setEnterProductImg(e.target.files[0])} required />
+                                    {
+                                        id ? 
+                                            <input type="file" onChange={e => setEnterProductImg(e.target.files[0])} />
+                                        :   <input type="file" onChange={e => setEnterProductImg(e.target.files[0])} required />
+                                    }
+                                    
                                 </FormGroup>
 
                                 <div className="d-flex justify-content-end mb-5">
-                                    <button className="buy__btn" type="submit">Add Product</button>
+                                    <button className="buy__btn" type="submit">{id ? 'Edit' : 'Add'} Product</button>
                                 </div>
                             </Col>
                         </Row>

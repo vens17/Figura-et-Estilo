@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Container, Row, Col } from "reactstrap";
 import { db } from "../firebase.config";
 import { doc, deleteDoc } from "firebase/firestore";
@@ -7,12 +7,18 @@ import useGetData from "../custom-hooks/useGetData";
 import { toast } from "react-toastify";
 
 const AllProducts = () => {
+    
+    const navigate = useNavigate()
 
     const {data: productsData, loading} = useGetData("products");
     const deleteProduct = async(id) => {
         await deleteDoc(doc(db, "products", id));
         toast.success("Deleted!");
     }
+
+    const editProduct = (id) => {
+        navigate(`/dashboard/edit-product/${id}`);
+    };
 
     return (
         <section className="pt-0">            
@@ -72,10 +78,16 @@ const AllProducts = () => {
                                                     <td>{item.price}</td>
                                                     <td> 
                                                         <button onClick={() => 
+                                                            {editProduct(item.id)}} 
+                                                            className="btn btn-secondary me-2">
+                                                                Edit
+                                                        </button> 
+
+                                                        <button onClick={() => 
                                                             {deleteProduct(item.id)}} 
                                                             className="btn btn-danger">
                                                                 Delete
-                                                        </button> 
+                                                        </button>
                                                     </td>
                                                 </tr>
                                             ))

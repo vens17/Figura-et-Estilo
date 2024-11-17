@@ -42,6 +42,7 @@ const Routers = ( ) => {
                         <Route path="dashboard" element={<Dashboard/>} />
                         <Route path="dashboard/all-products" element={<AllProducts/>} />
                         <Route path="dashboard/add-product" element={<AddProducts/>} />
+                        <Route path="dashboard/edit-product/:id" element={<AddProducts/>} />
                         <Route path="dashboard/orders" element={<Orders/>} />
                         <Route path="dashboard/users" element={<Users/>} />
                     </>
