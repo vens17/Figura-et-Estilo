@@ -143,7 +143,7 @@ const Shop = ( ) => {
                         <Col lg='3' md='3'>
                             <div className="filter__widget">
                                 <select onChange={handleFilter}>
-                                    <option value="">Clothes Category</option>
+                                    <option value="">Category</option>
                                     <option value="bottoms">Bottoms</option>
                                     <option value="tops">Tops</option>
                                     <option value="jumpsuit">Jumpsuit</option>

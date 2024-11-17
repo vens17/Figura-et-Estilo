@@ -72,7 +72,6 @@ const Header = ( ) => {
     }
 
     const logout = () => {
-
         signOut(auth).then(() => {
             toast.success('Logged Out')
             navigate("/home")
@@ -97,9 +96,9 @@ const Header = ( ) => {
 
     const menuToggle = () => menuRef.current.classList.toggle('active__menu')
 
-    // const navigateToCart = () => {
-    //     navigate("/cart");
-    // };
+    const navigateToCart = () => {
+        navigate("/favorites");
+    };
 
     const toggleProfileActions = () => profileActionRef.current.classList.toggle('show__profileActions')
 
@@ -132,7 +131,7 @@ const Header = ( ) => {
 
                         <span className="fav__icon"><i className="ri-camera-line"></i>
                         </span>
-                        <span className="fav__icon">
+                        <span className="fav__icon" onClick={navigateToCart}>
                             <i className="ri-heart-line"></i>
                             <span className="badge">{likeItems.length}</span>
                         </span>

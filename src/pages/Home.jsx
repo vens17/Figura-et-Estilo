@@ -72,22 +72,6 @@ const Home = ( ) => {
             </Container>
         </section>
 
-        <section className="best__sales">
-            <Container>
-            <Row>
-                    <Col lg='12' className="text-center">
-                        <h2 className="section__title">Best Sales</h2>
-                    </Col>
-
-                    {
-                        loading ? (<h5 className="fw-bold">Loading...</h5>) :
-                        (<ProductsList data={products}/>)
-                    }
-
-                </Row>
-            </Container>
-        </section>
-
         <section className="timer__count">
             <Container>
                 <Row>

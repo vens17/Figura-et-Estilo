@@ -87,12 +87,13 @@ const ProductDetails = ( ) => {
    
 
     const addToCart = async () => {
-        dispatch( cartActions.likeItem({ id }) );
+        const productData = { id, imgUrl, itemProductName, price, category, gender};
+        dispatch( cartActions.likeItem(productData) );
 
         try{
             const userRef = doc(db, "users", userID);
-            const isLiked = _.includes(likeItems, id);
-            const likeData = isLiked ? _.filter(likeItems, o => o !== id) : [...likeItems, id];
+            const isLiked = _.find(likeItems, o => o.id === id);
+            const likeData = isLiked ? _.filter(likeItems, o => o.id !== id) : [...likeItems, productData];
             
             await updateDoc(userRef, {
                 likes: likeData
@@ -199,8 +200,8 @@ const ProductDetails = ( ) => {
 
                                 <p className="mt-3">{shortDesc}</p>
 
-                                <motion.button whileTap={{ scale: 1.2 }} className={_.includes(likeItems, id) ? 'btn btn-danger mt-5' : 'buy__btn'} onClick={addToCart}> 
-                                    <i className={`ri-heart-${_.includes(likeItems, id) ? 'fill' : 'line'} mt-3`}></i> {_.includes(likeItems, id) ? 'Liked' : 'Like'}
+                                <motion.button whileTap={{ scale: 1.2 }} className={_.find(likeItems, o => o.id === id) ? 'btn btn-danger mt-5' : 'buy__btn'} onClick={addToCart}> 
+                                    <i className={`ri-heart-${_.find(likeItems, o => o.id === id) ? 'fill' : 'line'} mt-3`}></i> {_.find(likeItems, o => o.id === id) ? 'Liked' : 'Like'}
                                 </motion.button>
                             </div>
                         </Col>

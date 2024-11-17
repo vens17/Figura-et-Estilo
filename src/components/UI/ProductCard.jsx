@@ -21,13 +21,14 @@ const dispatch = useDispatch()
 const userID = useSelector((state) => state.cart.userID)
 const likeItems = useSelector((state) => state.cart.likeItems)
 
-const addToCart = async (id) => {
-    dispatch( cartActions.likeItem({ id }) );
+const addToCart = async (data) => {
+    const productData = _.pick(data, ['id', 'imgUrl', 'itemProductName', 'price', 'category', 'gender']);
+    dispatch( cartActions.likeItem(productData) );
 
     try{
         const userRef = doc(db, "users", userID);
-        const isLiked = _.includes(likeItems, id);
-        const likeData = isLiked ? _.filter(likeItems, o => o !== id) : [...likeItems, id];
+        const isLiked = _.find(likeItems, o => o.id === data.id);
+        const likeData = isLiked ? _.filter(likeItems, o => o.id !== data.id) : [...likeItems, productData];
         
         await updateDoc(userRef, {
             likes: likeData
@@ -66,8 +67,8 @@ const addToCart = async (id) => {
 
                 {
                     !_.includes(window.location.pathname, 'home') ?
-                        <motion.span whileTap={{ scale: 1.2 }}  onClick={() => addToCart(item.id)}>
-                            <i className={`ri-heart-${_.includes(likeItems, item.id) ? 'fill' : 'line'} ${_.includes(likeItems, item.id) ? 'bg-danger' : ''}`}></i>
+                        <motion.span whileTap={{ scale: 1.2 }}  onClick={() => addToCart(item)}>
+                            <i className={`ri-heart-${_.find(likeItems, o => o.id === item.id) ? 'fill' : 'line'} ${_.find(likeItems, o => o.id === item.id) ? 'bg-danger' : ''}`}></i>
                         </motion.span>
                     : ''
                 }

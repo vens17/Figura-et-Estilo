@@ -11,7 +11,15 @@ const AboutUs = () => {
                     <div className="hero__content text-center">
                         <h2 className="section__title">About Us</h2>
                         <p className="mt-5 text-white">
-                            Figura et Estilo is an innovative Virtual Fashion Assistant designed for Paradoxical Clothing Shop. Our solution leverages augmented reality and intelligent decision support systems to enhance the online shopping experience. By offering personalized styling recommendations and virtual try-ons. Our goal is to streamline the decision-making process, reduce product returns, and elevate customer satisfaction, setting a new standard for digital fashion retail.
+                            Figura et Estilo is Latin for Shape and Style, embodying the essence of our Virtual Fashion Assistant. The name reflects our commitment to helping individuals embrace their unique figures and discover their personal style effortlessly.
+                        </p>
+
+                        <p className="mt-5 text-white">
+                            Designed for Paradoxical Clothing Shop, Figura et Estilo leverages augmented reality and intelligent decision support systems to enhance the online shopping experience. By offering personalized styling recommendations and virtual try-ons, it streamlines decision-making, reduces product returns, and elevates customer satisfaction, setting a new standard for digital fashion retail.
+                        </p>
+
+                        <p className="mt-5 text-white">
+                            With Figura et Estilo, we celebrate individuality while making fashion more accessible and inspiring for everyone.
                         </p>
                     </div>
                 </Container>

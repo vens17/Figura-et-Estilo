@@ -63,8 +63,8 @@ const cartSlice = createSlice ({
 
         likeItem: (state, action) => {
             const newItem = action.payload;
-            const isLiked = _.includes(state.likeItems, newItem.id);
-            const likeData = isLiked ? _.filter(state.likeItems, o => o !== newItem.id) : [...state.likeItems, newItem.id];
+            const isLiked = _.find(state.likeItems, o => o.id === newItem.id);
+            const likeData = isLiked ? _.filter(state.likeItems, o => o.id !== newItem.id) : [...state.likeItems, newItem];
 
             state.likeItems = likeData;
         },

@@ -4,41 +4,47 @@ import Helmet from "../components/Helmet/Helmet";
 import CommonSection from "../components/UI/CommonSection";
 import { Container, Row, Col } from "reactstrap";
 import { motion } from "framer-motion";
+import { doc, updateDoc } from "firebase/firestore";
+import { db } from "../firebase.config";
 import{ cartActions } from "../redux/slices/cartSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { toast } from 'react-toastify';
+import _ from 'lodash';
 
 const Cart = ( ) => {
 
+    const likeItems = useSelector((state) => state.cart.likeItems)
     const cartItems = useSelector((state) => state.cart.cartItems)
     const totalAmount = useSelector((state) => state.cart.totalAmount)
 
     return (
-        <Helmet title="Cart">
-            <CommonSection title="Product Cart"/>
+        <Helmet title="Favorites">
+            <CommonSection title="Favorites"/>
             <section>
                 <Container>
                     <Row>
-                        <Col lg='9'>
+                        <Col>
 
                         {
-                            cartItems.length === 0 ? (<h2 className="fs-4 text-center">No items added to the cart</h2>) : ( 
+                            likeItems.length === 0 ? (<h2 className="fs-4 text-center">No items added to favorites</h2>) : ( 
                             <table className="table cart-table bordered">
                                 <thead>
                                     <tr>
                                         <th>Image</th>
                                         <th>Product</th>
-                                        <th>Size</th>
-                                        <th>Color</th>
                                         <th>Price</th>
-                                        <th>Quantity</th>
-                                        <th>Delete</th>
+                                        <th>Category</th>
+                                        {/* <th>Size</th>
+                                        <th>Color</th>
+                                        <th>Quantity</th> */}
+                                        <th></th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
                                     {
-                                        cartItems.map((item,index) => (
+                                        likeItems.map((item,index) => (
 
                                         <Tr item={item} key={index}/>
 
@@ -52,7 +58,7 @@ const Cart = ( ) => {
 
                         </Col>
 
-                        <Col lg='3'>
+                        {/* <Col lg='3'>
                             <div>
                                 <h6 className="d-flex align-items-center justify-content-between">Subtotal
                                 <span className="fs-4 fw-bold">Php {totalAmount}</span>
@@ -64,7 +70,7 @@ const Cart = ( ) => {
                                 <button className="buy__btn w-100"><Link to='/checkout'>Checkout</Link></button>
                                 <button className="buy__btn w-100 mt-3"><Link to='/shop'>Continue Shopping</Link></button>
                             </div>
-                        </Col>
+                        </Col> */}
                     </Row>
                 </Container>
             </section>
@@ -74,27 +80,48 @@ const Cart = ( ) => {
 
 const Tr = ({item}) => {
 
+    const userID = useSelector((state) => state.cart.userID)
+    const likeItems = useSelector((state) => state.cart.likeItems)
+
     const dispatch = useDispatch()
-    const deleteProduct = () => {
-        dispatch (cartActions.deleteItem(item.id))
+    
+    const deleteProduct = async (data) => {
+        // dispatch (cartActions.deleteItem(item.id))
+
+        const productData = _.pick(data, ['id', 'imgUrl', 'itemProductName', 'price', 'category', 'gender']);
+        dispatch( cartActions.likeItem(productData) );
+
+        try{
+            const userRef = doc(db, "users", userID);
+            const isLiked = _.find(likeItems, o => o.id === data.id);
+            const likeData = isLiked ? _.filter(likeItems, o => o.id !== data.id) : [...likeItems, productData];
+            
+            await updateDoc(userRef, {
+                likes: likeData
+            });
+            
+            toast.success(`item successfully ${isLiked ? 'unliked' : 'liked'}`);
+        } catch(error) {
+            toast.error(error);  
+        }
     }
 
     return (
         <tr>
             <td><img src={item.imgUrl} alt="" /></td>
-            <td>{item.productName}</td>
-            <td> 
+            <td>{item.itemProductName}</td>
+            {/* <td> 
                 {item.size ? <button type="button" className="btn btn-sm btn-dark me-3" disabled>{item.size.toUpperCase()}</button> : ''}
             </td>
             <td>
                 {item.color ? <div className="color-holder" style={{ background: item.color }}></div> : ''}
-            </td>
+            </td> */}
             <td>Php {item.price}</td>
-            <td>{item.quantity}x</td>
+            <td>{item.category}x</td>
             <td>
                 <motion.i 
                     whileTap={{ scale: 1.2 }} 
-                    onClick={deleteProduct}
+                    onClick={() => deleteProduct(item)}
                     className="ri-delete-bin-5-line">
                 </motion.i>
             </td>

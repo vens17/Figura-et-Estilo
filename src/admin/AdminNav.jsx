@@ -46,8 +46,8 @@ const AdminNav = () => {
                         </div>
 
                         <div className="admin__nav-top-right">
-                            <span><i className="ri-notification-4-line"></i></span>
-                            <span><i className="ri-settings-5-line"></i></span>
+                            {/* <span><i className="ri-notification-4-line"></i></span>
+                            <span><i className="ri-settings-5-line"></i></span> */}
                             <img src={ currentUser && currentUser.photoURL} alt="" />
                         </div>
                     </div>
