@@ -13,20 +13,20 @@ const useGetData = ( collectionName ) => {
             const getData = async() => {
 
                 // === firebase firestore realtime database update ===
-                // await getDocs(collectionRef, (snapshot) => {
-                //     setData(snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id })));
-                //     setLoading(false);
-                // });
-
-                const docSnap = await getDocs(collectionRef);
-          
-                let data = [];
-                await docSnap.forEach((doc) => {
-                    data.push({ ...doc.data(), id: doc.id });
+                await onSnapshot(collectionRef, (snapshot) => {
+                    setData(snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id })));
+                    setLoading(false);
                 });
 
-                setData(data);
-                setLoading(false);
+                // const docSnap = await getDocs(collectionRef);
+          
+                // let data = [];
+                // await docSnap.forEach((doc) => {
+                //     data.push({ ...doc.data(), id: doc.id });
+                // });
+
+                // setData(data);
+                // setLoading(false);
             };
 
             getData();

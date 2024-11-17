@@ -88,7 +88,7 @@ const Header = ( ) => {
             dispatch( cartActions.setAuth(currentUser.uid) );
         }
 
-        if(currentUser.likes){
+        if(currentUser?.likes){
             dispatch( cartActions.setLikeItem(currentUser.likes) );
         }
 
