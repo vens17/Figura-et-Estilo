@@ -15,7 +15,7 @@ const useAuth = () => {
 
                 if (userInfo.exists()) {
                     const data = userInfo.data();
-                    user = _.merge(user, { type: data.type })
+                    user = _.merge(user, { type: data.type, likes: data.likes ?? [] })
                 }
                 
                 setCurrentUser(user);

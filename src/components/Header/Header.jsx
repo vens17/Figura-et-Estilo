@@ -5,7 +5,8 @@ import {motion} from 'framer-motion'
 import logo from '../../assets/images/fei-logo.png'
 import userIcon from '../../assets/images/user-icon.png'
 import { Container, Row } from "reactstrap";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { cartActions } from "../../redux/slices/cartSlice";
 import useAuth from "../../custom-hooks/useAuth";
 import { Link } from "react-router-dom";
 import { signOut } from "firebase/auth";
@@ -46,13 +47,17 @@ const nav__links = [
 const Header = ( ) => {
 
     const headerRef = useRef(null);
-    // const totalQuantity = useSelector(state => state.cart.totalQuantity)
-
     const profileActionRef = useRef(null)
-
     const menuRef = useRef(null);
+
+    const dispatch = useDispatch()
+
     const navigate = useNavigate();
+    
     const{currentUser} = useAuth();
+
+    // const totalQuantity = useSelector(state => state.cart.totalQuantity)
+    const likeItems = useSelector((state) => state.cart.likeItems)
 
     const stickyHeaderFunc = () => {
         window.addEventListener("scroll", () => {
@@ -79,8 +84,16 @@ const Header = ( ) => {
     useEffect(() => {
         stickyHeaderFunc()
 
+        if(currentUser){
+            dispatch( cartActions.setAuth(currentUser.uid) );
+        }
+
+        if(currentUser.likes){
+            dispatch( cartActions.setLikeItem(currentUser.likes) );
+        }
+
         return () => window.removeEventListener("scroll", stickyHeaderFunc);
-    } );
+    }, [currentUser, dispatch]);
 
     const menuToggle = () => menuRef.current.classList.toggle('active__menu')
 
@@ -117,10 +130,11 @@ const Header = ( ) => {
 
                     <div className="nav__icons">
 
-
                         <span className="fav__icon"><i className="ri-camera-line"></i>
                         </span>
-                        <span className="fav__icon"><i className="ri-heart-line"></i>
+                        <span className="fav__icon">
+                            <i className="ri-heart-line"></i>
+                            <span className="badge">{likeItems.length}</span>
                         </span>
                         {/* <span className="cart__icon" onClick={navigateToCart}><i className="ri-shopping-bag-line"></i>
                         <span className="badge">{totalQuantity}</span>

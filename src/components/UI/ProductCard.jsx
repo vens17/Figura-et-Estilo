@@ -9,24 +9,45 @@ import { Col } from "reactstrap";
 import { Link } from "react-router-dom";
 import { toast } from 'react-toastify';
 
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { cartActions } from '../../redux/slices/cartSlice';
+import { doc, updateDoc } from "firebase/firestore";
+import { db } from "../../firebase.config";
 
 const ProductCard = ( {item} ) => {
 
 const dispatch = useDispatch()
 
-const addToCart = () => {
-    dispatch(
-         cartActions.addItem({
-            id: item.id,
-            productName: item.itemProductName,
-            price: item.price,
-            imgUrl: item.imgUrl,
-        })
-    );
+const userID = useSelector((state) => state.cart.userID)
+const likeItems = useSelector((state) => state.cart.likeItems)
 
-    toast.success('item added successfully to the cart')
+const addToCart = async (id) => {
+    dispatch( cartActions.likeItem({ id }) );
+
+    try{
+        const userRef = doc(db, "users", userID);
+        const isLiked = _.includes(likeItems, id);
+        const likeData = isLiked ? _.filter(likeItems, o => o !== id) : [...likeItems, id];
+        
+        await updateDoc(userRef, {
+            likes: likeData
+        });
+        
+        toast.success(`item successfully ${isLiked ? 'unliked' : 'liked'}`);
+    } catch(error) {
+        toast.error(error);  
+    }
+
+    // dispatch(
+    //      cartActions.addItem({
+    //         id: item.id,
+    //         productName: item.itemProductName,
+    //         price: item.price,
+    //         imgUrl: item.imgUrl,
+    //     })
+    // );
+
+    // toast.success('item added successfully to the cart')
 
 };
 
@@ -44,9 +65,9 @@ const addToCart = () => {
                 <span className="price">Php {item.price}</span>
 
                 {
-                    _.includes(window.location.pathname, 'shop') ? 
-                        <motion.span whileTap={{ scale: 1.2 }} onClick={addToCart}>
-                            <i className="ri-add-line"></i>
+                    !_.includes(window.location.pathname, 'home') ?
+                        <motion.span whileTap={{ scale: 1.2 }}  onClick={() => addToCart(item.id)}>
+                            <i className={`ri-heart-${_.includes(likeItems, item.id) ? 'fill' : 'line'} ${_.includes(likeItems, item.id) ? 'bg-danger' : ''}`}></i>
                         </motion.span>
                     : ''
                 }

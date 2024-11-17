@@ -7,15 +7,19 @@ import CommonSection from '../components/UI/CommonSection';
 import "../styles/product-details.css";
 import { motion } from "framer-motion";
 import ProductsList from '../components/UI/ProductsList'
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { cartActions } from "../redux/slices/cartSlice";
 import { toast } from "react-toastify";
 import { db } from "../firebase.config";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 import useGetData from "../custom-hooks/useGetData";
+import _ from 'lodash';
 
 const ProductDetails = ( ) => {
-
+    
+    const userID = useSelector((state) => state.cart.userID)
+    const likeItems = useSelector((state) => state.cart.likeItems)
+    
     const [product, setProduct] = useState({})
     const [tab, setTab] = useState("desc");
     const reviewUser = useRef("");
@@ -80,19 +84,37 @@ const ProductDetails = ( ) => {
         toast.success("feedback submitted")
     };
 
-    const addToCart = () => {
-        dispatch(
-            cartActions.addItem({
-                id,
-                imgUrl,
-                itemProductName,
-                price,
-                color,
-                size
-            })
-        );
+   
 
-        toast.success("item added successfully to the cart");
+    const addToCart = async () => {
+        dispatch( cartActions.likeItem({ id }) );
+
+        try{
+            const userRef = doc(db, "users", userID);
+            const isLiked = _.includes(likeItems, id);
+            const likeData = isLiked ? _.filter(likeItems, o => o !== id) : [...likeItems, id];
+            
+            await updateDoc(userRef, {
+                likes: likeData
+            });
+            
+            toast.success(`item successfully ${isLiked ? 'unliked' : 'liked'}`);
+        } catch(error) {
+            toast.error(error);  
+        }
+
+        // dispatch(
+        //     cartActions.addItem({
+        //         id,
+        //         imgUrl,
+        //         itemProductName,
+        //         price,
+        //         color,
+        //         size
+        //     })
+        // );
+
+        // toast.success("item added successfully to the cart");        
     };
 
     useEffect( () => {
@@ -147,7 +169,7 @@ const ProductDetails = ( ) => {
                                 {
                                     sizes ? 
                                     <div className="mb-4">
-                                        <h6 className="mb-3" style={{ fontWeight: '600' }}>Select Size</h6>
+                                        <h6 className="mb-3" style={{ fontWeight: '600' }}>Sizes</h6>
                                         
                                         {
                                             sizes.map(o => (
@@ -164,11 +186,11 @@ const ProductDetails = ( ) => {
                                 {
                                     colors ? 
                                     <div className="mb-4">
-                                        <h6 className="mb-3" style={{ fontWeight: '600' }}>Select Color</h6>
+                                        <h6 className="mb-3" style={{ fontWeight: '600' }}>Colors</h6>
                                         
                                         {
                                             colors.map(o => (
-                                                <div className={o === color ? 'color-holder active' : 'color-holder'} style={{ background: o, cursor: 'pointer' }} onClick={() => setcolor(o)}></div>
+                                                <div className={o === color ? 'color-holder active' : 'color-holder'} style={{ background: o, cursor: 'pointer' }} onClick={() => setcolor(o)} key={o}></div>
                                             ))
                                         }
                                     </div>
@@ -177,9 +199,8 @@ const ProductDetails = ( ) => {
 
                                 <p className="mt-3">{shortDesc}</p>
 
-                                <motion.button whileTap={{ scale: 1.2 }} 
-                                className="buy__btn" onClick={addToCart}> 
-                                    Add to Cart
+                                <motion.button whileTap={{ scale: 1.2 }} className={_.includes(likeItems, id) ? 'btn btn-danger mt-5' : 'buy__btn'} onClick={addToCart}> 
+                                    <i className={`ri-heart-${_.includes(likeItems, id) ? 'fill' : 'line'} mt-3`}></i> {_.includes(likeItems, id) ? 'Liked' : 'Like'}
                                 </motion.button>
                             </div>
                         </Col>

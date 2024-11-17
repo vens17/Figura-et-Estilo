@@ -54,6 +54,8 @@ const Home = ( ) => {
 
     return <Helmet title={'Home'}>
 
+        <section className="hero__section"></section>
+        
         <section className="trending__products">
             <Container>
                 <Row>

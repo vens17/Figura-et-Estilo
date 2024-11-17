@@ -1,7 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
+import _ from 'lodash';
 
 const initialState = {
 
+    userID: {},
+    likeItems: [],
     cartItems: [],
     totalAmount: 0,
     totalQuantity: 0
@@ -56,6 +59,22 @@ const cartSlice = createSlice ({
             state.totalAmount = state.cartItems.reduce((total, item) => total+
                 Number(item.price) * Number(item.quantity),0
             );
+        },
+
+        likeItem: (state, action) => {
+            const newItem = action.payload;
+            const isLiked = _.includes(state.likeItems, newItem.id);
+            const likeData = isLiked ? _.filter(state.likeItems, o => o !== newItem.id) : [...state.likeItems, newItem.id];
+
+            state.likeItems = likeData;
+        },
+
+        setLikeItem: (state, action) => {
+            state.likeItems = action.payload;
+        },
+
+        setAuth: (state, action) => {
+            state.userID = action.payload;
         },
 
         resetCart: (state) => {

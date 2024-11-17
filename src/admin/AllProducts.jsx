@@ -58,7 +58,7 @@ const AllProducts = () => {
                                                             : ''
                                                         }
                                                     </td>
-                                                    <td>{item.stocks ?? 0}</td>
+                                                    <td>{item.productStock ?? 0}</td>
                                                     <td>{item.gender}</td>
                                                     <td>
                                                         {

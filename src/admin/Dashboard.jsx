@@ -11,9 +11,12 @@ const Dashboard = () => {
 
     const [orders, setOrder] = useState([]);
 
+    const [likes, setLike] = useState([]);
+
     useEffect(() => {
-        setOrder(_.flatten(_.map(_.filter(users, o => o.cart), 'cart')))
-    }, [users, setOrder])
+        setLike(_.flatten(_.map(_.filter(users, o => o.likes), 'likes')))
+        setOrder(_.flatten(_.map(_.filter(users, o => o.cart), 'cart')))        
+    }, [users, setLike, setOrder])
 
     return (
     <>
@@ -44,7 +47,7 @@ const Dashboard = () => {
                     <Col className="lg-3">
                         <div className="revenue__box">
                             <h5>Total Likes</h5>
-                            <span>{ _.sum(_.map(orders, o => Number(o.totalPrice))) }</span>
+                            <span>{ likes.length }</span>
                         </div>
                     </Col>
 
