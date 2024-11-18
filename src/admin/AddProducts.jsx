@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Form, FormGroup } from "reactstrap";
+import { InputTags } from 'react-bootstrap-tagsinput'
+import 'react-bootstrap-tagsinput/dist/index.css'
 import { toast } from "react-toastify";
 import { sizesData, genderData } from "../assets/data/attributesData"
 import { db, storage } from "../firebase.config";
@@ -17,6 +19,7 @@ const AddProducts = () => {
     const [enterPrice, setEnterPrice] = useState('');
     const [enterProductImg, setEnterProductImg] = useState(null);
     const [productStock, setProductStock] = useState('');
+    const [productTags, setProductTags] = useState([]);
     const [colors, setColor] = useState([]);
     const [gender, setGender] = useState([]);
     const [sizes, setSize] = useState([]);
@@ -38,6 +41,7 @@ const AddProducts = () => {
                     const {
                         itemProductName, 
                         productStock,
+                        productTags,
                         price, 
                         productDesc, 
                         category,
@@ -51,6 +55,7 @@ const AddProducts = () => {
                     setEnterProductDesc(productDesc)
                     setEnterCategory(category)
                     setEnterPrice(price)
+                    setProductTags(productTags)
                     setProductStock(productStock)
                     setColor(colors)
                     setGender(gender)
@@ -97,6 +102,7 @@ const AddProducts = () => {
                                 price: enterPrice,
                                 imgUrl: downloadURL,
                                 productStock,
+                                productTags,
                                 forKids,
                                 colors,
                                 sizes,
@@ -123,6 +129,7 @@ const AddProducts = () => {
                         category: enterCategory,
                         price: enterPrice,
                         productStock,
+                        productTags,
                         forKids,
                         colors,
                         sizes,
@@ -173,6 +180,7 @@ const AddProducts = () => {
                             price: enterPrice,
                             imgUrl: downloadURL,
                             productStock,
+                            productTags,
                             forKids,
                             colors,
                             sizes,
@@ -238,6 +246,7 @@ const AddProducts = () => {
                                     <input type="text" 
                                     placeholder="Product Name" 
                                     value={enterProductName} 
+                                    autoFocus
                                     onChange={e => setEnterProductName(e.target.value)} required />
                                 </FormGroup>
 
@@ -360,7 +369,12 @@ const AddProducts = () => {
                                     
                                 </FormGroup>
 
-                                <div className="d-flex justify-content-end mb-5">
+                                <FormGroup>
+                                    <h6 className="mb-3" style={{ color: 'coral', fontWeight: '600' }}>Product Tags</h6>
+                                    <InputTags values={productTags} onTags={(value) => setProductTags(value.values)} onKeyDown={(e) => { e.key === 'Enter' && e.preventDefault()}} />
+                                </FormGroup>
+
+                                <div className="d-flex justify-content-end mb-5">                                    
                                     <button className="buy__btn" type="submit">{id ? 'Edit' : 'Add'} Product</button>
                                 </div>
                             </Col>

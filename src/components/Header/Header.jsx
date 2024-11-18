@@ -133,7 +133,7 @@ const Header = ( ) => {
                         </span>
                         <span className="fav__icon" onClick={navigateToCart}>
                             <i className="ri-heart-line"></i>
-                            <span className="badge">{likeItems.length}</span>
+                            <span className="like-badge">{likeItems.length}</span>
                         </span>
                         {/* <span className="cart__icon" onClick={navigateToCart}><i className="ri-shopping-bag-line"></i>
                         <span className="badge">{totalQuantity}</span>
