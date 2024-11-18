@@ -58,7 +58,7 @@ const ProductDetails = ( ) => {
             price, 
             avgRating, 
             reviews, 
-            description, 
+            productDesc, 
             shortDesc, 
             category,
             colors,
@@ -227,7 +227,7 @@ const ProductDetails = ( ) => {
 
                             {
                                 tab === 'desc' ? <div className="tab__content mt-5">
-                                <p>{description}</p>
+                                <p>{productDesc}</p>
                             </div> : (<div className="product__review mt-5">
                                 <div className="review__wrapper">
                                     {/*<ul>
