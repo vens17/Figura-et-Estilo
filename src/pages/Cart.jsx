@@ -35,9 +35,9 @@ const Cart = ( ) => {
                                         <th>Product</th>
                                         <th>Price</th>
                                         <th>Category</th>
-                                        {/* <th>Size</th>
+                                        <th>Size</th>
                                         <th>Color</th>
-                                        <th>Quantity</th> */}
+                                        {/* <th>Quantity</th> */}
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -110,14 +110,14 @@ const Tr = ({item}) => {
         <tr>
             <td><img src={item.imgUrl} alt="" /></td>
             <td>{item.itemProductName}</td>
-            {/* <td> 
+            <td>Php {item.price}</td>
+            <td>{item.category}x</td>
+            <td> 
                 {item.size ? <button type="button" className="btn btn-sm btn-dark me-3" disabled>{item.size.toUpperCase()}</button> : ''}
             </td>
             <td>
                 {item.color ? <div className="color-holder" style={{ background: item.color }}></div> : ''}
-            </td> */}
-            <td>Php {item.price}</td>
-            <td>{item.category}x</td>
+            </td>            
             <td>
                 <motion.i 
                     whileTap={{ scale: 1.2 }} 

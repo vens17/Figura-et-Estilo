@@ -87,7 +87,7 @@ const ProductDetails = ( ) => {
    
 
     const addToCart = async () => {
-        const productData = { id, imgUrl, itemProductName, price, category, gender};
+        const productData = { id, imgUrl, itemProductName, color, size, price, category, gender};
         dispatch( cartActions.likeItem(productData) );
 
         try{
