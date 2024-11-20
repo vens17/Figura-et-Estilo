@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Container, Row } from "reactstrap";
 import useAuth from "../custom-hooks/useAuth";
+import { signOut } from "firebase/auth";
+import { auth } from "../firebase.config";
+import { toast } from "react-toastify";
 import "../styles/admin-nav.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const admin__nav = [
     {
@@ -30,6 +33,21 @@ const AdminNav = () => {
 
     const {currentUser} = useAuth()
 
+    const navigate = useNavigate();
+
+    const profileActionRef = useRef(null)
+
+    const toggleProfileActions = () => profileActionRef.current.classList.toggle('show__profileActions')
+
+    const logout = () => {
+        signOut(auth).then(() => {
+            toast.success('Logged Out')
+            navigate("/home")
+        }).catch( err => {
+            toast.error(err.message)
+        })
+    }
+
     return (
     <>
         <header className="admin__header">
@@ -48,7 +66,13 @@ const AdminNav = () => {
                         <div className="admin__nav-top-right">
                             {/* <span><i className="ri-notification-4-line"></i></span>
                             <span><i className="ri-settings-5-line"></i></span> */}
-                            <img src={ currentUser && currentUser.photoURL} alt="" />
+                            <img src={ currentUser && currentUser.photoURL} alt="" onClick={toggleProfileActions}/>
+                            
+                            <div className="profile__actions" ref={profileActionRef} onClick={toggleProfileActions}>
+                                {
+                                    currentUser ? <span onClick={logout}>Logout</span> : ''
+                                }
+                            </div>
                         </div>
                     </div>
                 </Container>
