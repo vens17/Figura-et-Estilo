@@ -6,9 +6,10 @@ import Helmet from "../components/Helmet/Helmet";
 import "../styles/home.css";
 import { Container, Row, Col } from "reactstrap";
 import clothesImg from '../assets/images/group-clothes.png'
-import ProductsList from "../components/UI/ProductsList";
+import ProductsList from "../components/UI/ProductsList"; 
 import Clock from "../components/UI/Clock";
 import useGetData from "../custom-hooks/useGetData";
+
 
 const Home = ( ) => {   
     
