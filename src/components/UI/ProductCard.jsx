@@ -56,6 +56,9 @@ const ProductCard = ({ item }) => {
 
   return (
     <Col lg="3" md="4" className="mb-2">
+  
+
+      <Link to={`/shop/${item.id}`}>
       <div className="product__item">
         <div className="product__img">
           <motion.img
@@ -66,7 +69,7 @@ const ProductCard = ({ item }) => {
         </div>
         <div className="p-2 product__info">
           <h3 className="product__name">
-            <Link to={`/shop/${item.id}`}>{item.itemProductName}</Link>
+         {item.itemProductName}
           </h3>
           <span>{item.category}</span>
         </div>
@@ -89,7 +92,7 @@ const ProductCard = ({ item }) => {
             </motion.span>
           )}
         </div>
-      </div>
+      </div></Link>
     </Col>
   );
 };
