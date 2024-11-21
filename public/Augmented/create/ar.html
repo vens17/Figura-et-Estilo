@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+
+<head>
+    <meta charSet="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preload" as="image" href="../images/android-chrome-512x512.png" />
+    <link rel="stylesheet" href="../_next/static/css/ab49f5b063db7907.css" data-precedence="next" />
+    <link rel="stylesheet" href="../_next/static/css/5068b341e6b61b3a.css" data-precedence="next" />
+    <link rel="stylesheet" href="../_next/static/css/dc8430fa12dc6524.css" data-precedence="next" />
+    <link rel="preload" as="script" fetchPriority="low" href="../_next/static/chunks/webpack-e78e483637259e80.js" />
+    <!-- <script src="../_next/static/chunks/52d5e6ad-6e421807b608d56c.js" async=""></script>
+    <script src="../_next/static/chunks/539-56c56e185fc357ee.js" async=""></script>
+    <script src="../_next/static/chunks/main-app-abbe472cfe1eeca1.js" async=""></script>
+    <script src="../_next/static/chunks/649-1bd70dbbede19eca.js" async=""></script>
+    <script src="../_next/static/chunks/app/%5blocale%5d/(pages)/create/page-fe7a1bc2f882a64f.js" async=""></script>
+    <script src="../_next/static/chunks/7cdf5257-130e49f7dcef4933.js" async=""></script>
+    <script src="../_next/static/chunks/644-f0f070d083adbf2a.js" async=""></script>
+    <script src="../_next/static/chunks/823-47795b8f8f0ab958.js" async=""></script>
+    <script src="../_next/static/chunks/376-c3090a1ffd1a1643.js" async=""></script>
+    <script src="../_next/static/chunks/425-d7e7f7b314b41601.js" async=""></script>
+    <script src="../_next/static/chunks/531-ea9e0d27da58be85.js" async=""></script>
+    <script src="../_next/static/chunks/601-26c2ce5fa5ed78cd.js" async=""></script>
+    <script src="../_next/static/chunks/195-75b006ac81de4965.js" async=""></script>
+    <script src="../_next/static/chunks/app/%5blocale%5d/layout-8fccb16c69b966d5.js" async=""></script> -->
+    <link rel="preload" href="https://www.googletagmanager.com/gtag/js?id=G-NK28X9GPXX" as="script" />
+    <title>Figura et estilo Try on Room</title>
+    <meta name="description"
+        content="Change Clothes on Kolors Virtual Try On in the Wild. Allows you to virtually dress any model in various outfits, maintaining fabric textures, logos." />
+    <meta name="robots" content="index, follow" />
+    <!-- <link rel="icon" href="" /> -->
+    <link rel="apple-touch-icon" href="../fei-logo.png" sizes="180x180" />
+    <meta name="next-size-adjust" />
+    <script src="../_next/static/chunks/polyfills-78c92fac7aa8fdd8.js" noModule=""></script>
+    <style id="antd-cssinjs" data-rc-order="prepend" data-rc-priority="-1000">
+        :where(.css-1c0na6j) a {
+            color: #1677ff;
+            text-decoration: none;
+            background-color: transparent;
+            outline: none;
+            cursor: pointer;
+            transition: color 0.3s;
+            -webkit-text-decoration-skip: objects;
+        }
+
+        :where(.css-1c0na6j) a:hover {
+            color: #69b1ff;
+        }
+
+        :where(.css-1c0na6j) a:active {
+            color: #0958d9;
+        }
+
+        :where(.css-1c0na6j) a:active,
+        :where(.css-1c0na6j) a:hover {
+            text-decoration: none;
+            outline: 0;
+        }
+
+        :where(.css-1c0na6j) a:focus {
+            text-decoration: none;
+            outline: 0;
+        }
+
+        :where(.css-1c0na6j) a[disabled] {
+            color: rgba(0, 0, 0, 0.25);
+            cursor: not-allowed;
+        }
+
+        :where(.css-1c0na6j).ant-popover {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            color: rgba(0, 0, 0, 0.88);
+            font-size: 14px;
+            line-height: 1.5714285714285714;
+            list-style: none;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1030;
+            font-weight: normal;
+            white-space: normal;
+            text-align: start;
+            cursor: auto;
+            user-select: text;
+            --valid-offset-x: var(--arrow-offset-horizontal, var(--arrow-x));
+            transform-origin: var(--valid-offset-x, 50%) var(--arrow-y, 50%);
+            --antd-arrow-background-color: #ffffff;
+            width: max-content;
+            max-width: 100vw;
+        }
+
+        :where(.css-1c0na6j).ant-popover-rtl {
+            direction: rtl;
+        }
+
+        :where(.css-1c0na6j).ant-popover-hidden {
+            display: none;
+        }
+
+        :where(.css-1c0na6j).ant-popover .ant-popover-content {
+            position: relative;
+        }
+
+        :where(.css-1c0na6j).ant-popover .ant-popover-inner {
+            background-color: #ffffff;
+            background-clip: padding-box;
+            border-radius: 8px;
+            box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+            padding: 12px;
+        }
+
+        :where(.css-1c0na6j).ant-popover .ant-popover-title {
+            min-width: 177px;
+            margin-bottom: 8px;
+            color: rgba(0, 0, 0, 0.88);
+            font-weight: 600;
+            border-bottom: none;
+            padding: 0;
+        }
+
+        :where(.css-1c0na6j).ant-popover .ant-popover-inner-content {
+            color: rgba(0, 0, 0, 0.88);
+            padding: 0;
+        }
+
+        :where(.css-1c0na6j).ant-popover .ant-popover-arrow {
+            position: absolute;
+            z-index: 1;
+            display: block;
+            pointer-events: none;
+            width: 16px;
+            height: 16px;
+            overflow: hidden;
+        }
+
+        :where(.css-1c0na6j).ant-popover .ant-popover-arrow::before {
+            position: absolute;
+            bottom: 0;
+            inset-inline-start: 0;
+            width: 16px;
+            height: 8px;
+            background: var(--antd-arrow-background-color);
+            clip-path: polygon(1.6568542494923806px 100%, 50% 1.6568542494923806px, 14.34314575050762px 100%, 1.6568542494923806px 100%);
+            clip-path: path('M 0 8 A 4 4 0 0 0 2.82842712474619 6.82842712474619 L 6.585786437626905 3.0710678118654755 A 2 2 0 0 1 9.414213562373096 3.0710678118654755 L 13.17157287525381 6.82842712474619 A 4 4 0 0 0 16 8 Z');
+            content: "";
+        }
+
+        :where(.css-1c0na6j).ant-popover .ant-popover-arrow::after {
+            content: "";
+            position: absolute;
+            width: 8.970562748477143px;
+            height: 8.970562748477143px;
+            bottom: 0;
+            inset-inline: 0;
+            margin: auto;
+            border-radius: 0 0 2px 0;
+            transform: translateY(50%) rotate(-135deg);
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
+            z-index: 0;
+            background: transparent;
+        }
+
+        :where(.css-1c0na6j).ant-popover .ant-popover-arrow:before {
+            background: var(--antd-arrow-background-color);
+        }
+
+        :where(.css-1c0na6j).ant-popover-placement-top>.ant-popover-arrow,
+        :where(.css-1c0na6j).ant-popover-placement-topLeft>.ant-popover-arrow,
+        :where(.css-1c0na6j).ant-popover-placement-topRight>.ant-popover-arrow {
+            bottom: 0;
+            transform: translateY(100%) rotate(180deg);
+        }
+
+        :where(.css-1c0na6j).ant-popover-placement-top>.ant-popover-arrow {
+            left: 50%;
+            transform: translateX(-50%) translateY(100%) rotate(180deg);
+        }
+
+        :where(.css-1c0na6j).ant-popover-placement-topLeft {
+            --arrow-offset-horizontal: 12px;
+        }
+
+        :where(.css-1c0na6j).ant-popover-placement-topLeft>.ant-popover-arrow {
+            left: 12px;
+        }
+
+        :where(.css-1c0na6j).ant-popover-placement-topRight {
+            --arrow-offset-horizontal: calc(100% - 12px);
+        }
+
+        :where(.css-1c0na6j).ant-popover-placement-topRight>.ant-popover-arrow {
+            right: 12px;
+        }
+
+        :where(.css-1c0na6j).ant-popover-placement-bottom>.ant-popover-arrow,
+        :where(.css-1c0na6j).ant-popover-placement-bottomLeft>.ant-popover-arrow,
+        :where(.css-1c0na6j).ant-popover-placement-bottomRight>.ant-popover-arrow {
+            top: 0;
+            transform: translateY(-100%);
+        }
+
+        :where(.css-1c0na6j).ant-popover-placement-bottom>.ant-popover-arrow {
+            left: 50%;
+            transform: translateX(-50%) translateY(-100%);
+        }
+
+        :where(.css-1c0na6j).ant-popover-placement-bottomLeft {
+            --arrow-offset-horizontal: 12px;
+        }
+
+        :where(.css-1c0na6j).ant-popover-placement-bottomLeft>.ant-popover-arrow {
+            left: 12px;
+        }
+
+        :where(.css-1c0na6j).ant-popover-placement-bottomRight {
+            --arrow-offset-horizontal: calc(100% - 12px);
+        }
+
+        :where(.css-1c0na6j).ant-popover-placement-bottomRight>.ant-popover-arrow {
+            right: 12px;
+        }
+
+        :where(.css-1c0na6j).ant-popover-placement-left>.ant-popover-arrow,
+        :where(.css-1c0na6j).ant-popover-placement-leftTop>.ant-popover-arrow,
+        :where(.css-1c0na6j).ant-popover-placement-leftBottom>.ant-popover-arrow {
+            right: 0;
+            transform: translateX(100%) rotate(90deg);
+        }
+
+        :where(.css-1c0na6j).ant-popover-placement-left>.ant-popover-arrow {
+            top: 50%;
+            transform: translateY(-50%) translateX(100%) rotate(90deg);
+        }
+
+        :where(.css-1c0na6j).ant-popover-placement-leftTop>.ant-popover-arrow {
+            top: 8px;
+        }
+
+        :where(.css-1c0na6j).ant-popover-placement-leftBottom>.ant-popover-arrow {
+            bottom: 8px;
+        }
+
+        :where(.css-1c0na6j).ant-popover-placement-right>.ant-popover-arrow,
+        :where(.css-1c0na6j).ant-popover-placement-rightTop>.ant-popover-arrow,
+        :where(.css-1c0na6j).ant-popover-placement-rightBottom>.ant-popover-arrow {
+            left: 0;
+            transform: translateX(-100%) rotate(-90deg);
+        }
+
+        :where(.css-1c0na6j).ant-popover-placement-right>.ant-popover-arrow {
+            top: 50%;
+            transform: translateY(-50%) translateX(-100%) rotate(-90deg);
+        }
+
+        :where(.css-1c0na6j).ant-popover-placement-rightTop>.ant-popover-arrow {
+            top: 8px;
+        }
+
+        :where(.css-1c0na6j).ant-popover-placement-rightBottom>.ant-popover-arrow {
+            bottom: 8px;
+        }
+
+        :where(.css-1c0na6j).ant-popover-pure {
+            position: relative;
+            max-width: none;
+            margin: 16px;
+            display: inline-block;
+        }
+
+        :where(.css-1c0na6j).ant-popover-pure .ant-popover-content {
+            display: inline-block;
+        }
+
+        :where(.css-1c0na6j).ant-popover.ant-popover-blue {
+            --antd-arrow-background-color: #1677ff;
+        }
+
+        :where(.css-1c0na6j).ant-popover.ant-popover-blue .ant-popover-inner {
+            background-color: #1677ff;
+        }
+
+        :where(.css-1c0na6j).ant-popover.ant-popover-blue .ant-popover-arrow {
+            background: transparent;
+        }
+
+        :where(.css-1c0na6j).ant-popover.ant-popover-purple {
+            --antd-arrow-background-color: #722ed1;
+        }
+
+        :where(.css-1c0na6j).ant-popover.ant-popover-purple .ant-popover-inner {
+            background-color: #722ed1;
+        }
+
+        :where(.css-1c0na6j).ant-popover.ant-popover-purple .ant-popover-arrow {
+            background: transparent;
+        }
+
+        :where(.css-1c0na6j).ant-popover.ant-popover-cyan {
+            --antd-arrow-background-color: #13c2c2;
+        }
+
+        :where(.css-1c0na6j).ant-popover.ant-popover-cyan .ant-popover-inner {
+            background-color: #13c2c2;
+        }
+
+        :where(.css-1c0na6j).ant-popover.ant-popover-cyan .ant-popover-arrow {
+            background: transparent;
+        }
+
+        :where(.css-1c0na6j).ant-popover.ant-popover-green {
+            --antd-arrow-background-color: #52c41a;
+        }
+
+        :where(.css-1c0na6j).ant-popover.ant-popover-green .ant-popover-inner {
+            background-color: #52c41a;
+        }
+
+        :where(.css-1c0na6j).ant-popover.ant-popover-green .ant-popover-arrow {
+            background: transparent;
+        }
+
+        :where(.css-1c0na6j).ant-popover.ant-popover-magenta {
+            --antd-arrow-background-color: #eb2f96;
+        }
+
+        :where(.css-1c0na6j).ant-popover.ant-popover-magenta .ant-popover-inner {
+            background-color: #eb2f96;
+        }
+
+        :where(.css-1c0na6j).ant-popover.ant-popover-magenta .ant-popover-arrow {
+            background: transparent;
+        }
+
+        :where(.css-1c0na6j).ant-popover.ant-popover-pink {
+            --antd-arrow-background-color: #eb2f96;
+        }
+
+        :where(.css-1c0na6j).ant-popover.ant-popover-pink .ant-popover-inner {
+            background-color: #eb2f96;
+        }
+
+        :where(.css-1c0na6j).ant-popover.ant-popover-pink .ant-popover-arrow {
+            background: transparent;
+        }
+
+        :where(.css-1c0na6j).ant-popover.ant-popover-red {
+            --antd-arrow-background-color: #f5222d;
+        }
+
+        :where(.css-1c0na6j).ant-popover.ant-popover-red .ant-popover-inner {
+            background-color: #f5222d;
+        }
+
+        :where(.css-1c0na6j).ant-popover.ant-popover-red .ant-popover-arrow {
+            background: transparent;
+        }
+
+        :where(.css-1c0na6j).ant-popover.ant-popover-orange {
+            --antd-arrow-background-color: #fa8c16;
+        }
+
+        :where(.css-1c0na6j).ant-popover.ant-popover-orange .ant-popover-inner {
+            background-color: #fa8c16;
+        }
+
+        :where(.css-1c0na6j).ant-popover.ant-popover-orange .ant-popover-arrow {
+            background: transparent;
+        }
+
+        :where(.css-1c0na6j).ant-popover.ant-popover-yellow {
+            --antd-arrow-background-color: #fadb14;
+        }
+
+        :where(.css-1c0na6j).ant-popover.ant-popover-yellow .ant-popover-inner {
+            background-color: #fadb14;
+        }
+
+        :where(.css-1c0na6j).ant-popover.ant-popover-yellow .ant-popover-arrow {
+            background: transparent;
+        }
+
+        :where(.css-1c0na6j).ant-popover.ant-popover-volcano {
+            --antd-arrow-background-color: #fa541c;
+        }
+
+        :where(.css-1c0na6j).ant-popover.ant-popover-volcano .ant-popover-inner {
+            background-color: #fa541c;
+        }
+
+        :where(.css-1c0na6j).ant-popover.ant-popover-volcano .ant-popover-arrow {
+            background: transparent;
+        }
+
+        :where(.css-1c0na6j).ant-popover.ant-popover-geekblue {
+            --antd-arrow-background-color: #2f54eb;
+        }
+
+        :where(.css-1c0na6j).ant-popover.ant-popover-geekblue .ant-popover-inner {
+            background-color: #2f54eb;
+        }
+
+        :where(.css-1c0na6j).ant-popover.ant-popover-geekblue .ant-popover-arrow {
+            background: transparent;
+        }
+
+        :where(.css-1c0na6j).ant-popover.ant-popover-lime {
+            --antd-arrow-background-color: #a0d911;
+        }
+
+        :where(.css-1c0na6j).ant-popover.ant-popover-lime .ant-popover-inner {
+            background-color: #a0d911;
+        }
+
+        :where(.css-1c0na6j).ant-popover.ant-popover-lime .ant-popover-arrow {
+            background: transparent;
+        }
+
+        :where(.css-1c0na6j).ant-popover.ant-popover-gold {
+            --antd-arrow-background-color: #faad14;
+        }
+
+        :where(.css-1c0na6j).ant-popover.ant-popover-gold .ant-popover-inner {
+            background-color: #faad14;
+        }
+
+        :where(.css-1c0na6j).ant-popover.ant-popover-gold .ant-popover-arrow {
+            background: transparent;
+        }
+
+        :where(.css-1c0na6j).ant-zoom-big-enter,
+        :where(.css-1c0na6j).ant-zoom-big-appear {
+            animation-duration: 0.2s;
+            animation-fill-mode: both;
+            animation-play-state: paused;
+        }
+
+        :where(.css-1c0na6j).ant-zoom-big-leave {
+            animation-duration: 0.2s;
+            animation-fill-mode: both;
+            animation-play-state: paused;
+        }
+
+        :where(.css-1c0na6j).ant-zoom-big-enter.ant-zoom-big-enter-active,
+        :where(.css-1c0na6j).ant-zoom-big-appear.ant-zoom-big-appear-active {
+            animation-name: css-1c0na6j-antZoomBigIn;
+            animation-play-state: running;
+        }
+
+        :where(.css-1c0na6j).ant-zoom-big-leave.ant-zoom-big-leave-active {
+            animation-name: css-1c0na6j-antZoomBigOut;
+            animation-play-state: running;
+            pointer-events: none;
+        }
+
+        :where(.css-1c0na6j).ant-zoom-big-enter,
+        :where(.css-1c0na6j).ant-zoom-big-appear {
+            transform: scale(0);
+            opacity: 0;
+            animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
+        }
+
+        :where(.css-1c0na6j).ant-zoom-big-enter-prepare,
+        :where(.css-1c0na6j).ant-zoom-big-appear-prepare {
+            transform: none;
+        }
+
+        :where(.css-1c0na6j).ant-zoom-big-leave {
+            animation-timing-function: cubic-bezier(0.78, 0.14, 0.15, 0.86);
+        }
+
+        @keyframes css-1c0na6j-antZoomBigIn {
+            0% {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes css-1c0na6j-antZoomBigOut {
+            0% {
+                transform: scale(1);
+            }
+
+            100% {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+        }
+
+        .anticon {
+            display: inline-flex;
+            align-items: center;
+            color: inherit;
+            font-style: normal;
+            line-height: 0;
+            text-align: center;
+            text-transform: none;
+            vertical-align: -0.125em;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .anticon>* {
+            line-height: 1;
+        }
+
+        .anticon svg {
+            display: inline-block;
+        }
+
+        .anticon .anticon .anticon-icon {
+            display: block;
+        }
+
+        .data-ant-cssinjs-cache-path {
+            content: "x5ba8r|ant-design-icons|anticon:hicwak;x5ba8r|Shared|ant:1wkiw5r;x5ba8r|Popover-Popover|ant-popover|anticon:100nu2k;x5ba8r|Tooltip-Tooltip|ant-popover|anticon:180kjeb";
+        }
+    </style>
+</head>
+
+<body class="__className_d65c78">
+    <div class="border-b border-gray-200 bg-white">
+        <header class="container mx-auto flex h-16 items-center justify-between lg:px-6">
+            <nav class="flex h-16 items-center" aria-label="Global">
+                <div class="flex items-center"><a href=""
+                        class="m-1.5 mr-4 shrink-0 p-1.5" title="logo"><img class="h-8 shrink-0"
+                            src="../fei-logo.png" alt="figura Logo" /></a>
+                    <div class="flex items-center p-3 lg:hidden">
+                        <div class="flex items-center">
+                            <div class="flex cursor-pointer items-center">
+                                <p class="mr-1 text-sm font-semibold">FIGURAE DRESSING ROOM</p><span role="img" aria-label="down"
+                                    class="anticon anticon-down text-xs"><svg viewBox="64 64 896 896" focusable="false"
+                                        data-icon="down" width="1em" height="1em" fill="currentColor"
+                                        aria-hidden="true">
+                                        <path
+                                            d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z">
+                                        </path>
+                                    </svg></span>
+                            </div>
+                        </div>
+                    </div>
+                 
+                </div>
+            </nav>
+            <div class="flex items-center">
+                <div class="mx-1">
+                    <div></div>
+                </div>
+                
+            </div>
+        </header>
+        <div
+            class="relative isolate flex items-center gap-x-6 overflow-hidden bg-gray-50 px-6 py-2.5 sm:px-3.5 sm:before:flex-1">
+            <div class="absolute left-[max(-7rem,calc(50%-52rem))] top-1/2 -z-10 -translate-y-1/2 transform-gpu blur-2xl"
+                aria-hidden="true">
+                <div class="aspect-[577/310] w-[36.0625rem] bg-gradient-to-r from-[#ff80b5] to-[#9089fc] opacity-30"
+                    style="clip-path:polygon(74.8% 41.9%, 97.2% 73.2%, 100% 34.9%, 92.5% 0.4%, 87.5% 0%, 75% 28.6%, 58.5% 54.6%, 50.1% 56.8%, 46.9% 44%, 48.3% 17.4%, 24.7% 53.9%, 0% 27.9%, 11.9% 74.2%, 24.9% 54.1%, 68.6% 100%, 74.8% 41.9%)">
+                </div>
+            </div>
+            <div class="absolute left-[max(45rem,calc(50%+8rem))] top-1/2 -z-10 -translate-y-1/2 transform-gpu blur-2xl"
+                aria-hidden="true">
+                <div class="aspect-[577/310] w-[36.0625rem] bg-gradient-to-r from-[#ff80b5] to-[#9089fc] opacity-30"
+                    style="clip-path:polygon(74.8% 41.9%, 97.2% 73.2%, 100% 34.9%, 92.5% 0.4%, 87.5% 0%, 75% 28.6%, 58.5% 54.6%, 50.1% 56.8%, 46.9% 44%, 48.3% 17.4%, 24.7% 53.9%, 0% 27.9%, 11.9% 74.2%, 24.9% 54.1%, 68.6% 100%, 74.8% 41.9%)">
+                </div>
+            </div>
+         
+          
+        </div>
+    </div>
+    <main>
+        <main>
+            <div class="mx-auto max-w-7xl px-6 pt-10 lg:px-8">
+                <div class="mx-auto max-w-2xl text-center">
+                
+                </div>
+            </div>
+            <section aria-label="figurae Virtual Try On" class="pb-8">
+                <h2 class="sr-only">figura Virtual Try On in the Wild</h2>
+                <div class="fixed bottom-20 right-10 z-50">
+                    <div class="relative"><a
+                            class="group relative flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-r from-pink-400/80 to-purple-400/80 shadow-lg transition-all hover:scale-110"
+                            href="workspace/"><span
+                                class="absolute -inset-1 animate-pulse rounded-full bg-gradient-to-r from-pink-400/40 to-purple-400/40 blur-sm"></span><svg
+                                class="h-8 w-8 text-white transition-transform group-hover:rotate-12"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z">
+                                </path>
+                            </svg><span class="absolute -bottom-6 text-sm font-bold text-gray-700">Workspace</span></a>
+                    </div>
+                </div>
+                <div>
+                    <div class="relative">
+                        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-4">
+                            <div class="relative pb-20">
+                                <div class="absolute inset-0 flex items-start justify-center bg-white"
+                                    style="top:1px;padding-top:33.33%">
+                                    <div class="relative h-40 w-40">
+                                        <div class="absolute inset-0 animate-spin rounded-full"
+                                            style="border:4px solid transparent;border-top-color:hsl(0, 0%, 100%);animation-duration:1s;width:100%;height:100%;top:0%;left:0%">
+                                        </div>
+                                        <div class="absolute inset-0 animate-spin rounded-full"
+                                            style="border:4px solid transparent;border-top-color:hsl(0, 0%, 80%);animation-duration:1.2s;width:85%;height:85%;top:7.5%;left:7.5%">
+                                        </div>
+                                        <div class="absolute inset-0 animate-spin rounded-full"
+                                            style="border:4px solid transparent;border-top-color:hsl(0, 0%, 60%);animation-duration:1.4s;width:70%;height:70%;top:15%;left:15%">
+                                        </div>
+                                        <div class="absolute inset-0 animate-spin rounded-full"
+                                            style="border:4px solid transparent;border-top-color:hsl(0, 0%, 40%);animation-duration:1.6s;width:55%;height:55%;top:22.5%;left:22.5%">
+                                        </div>
+                                        <div class="absolute inset-0 animate-spin rounded-full"
+                                            style="border:4px solid transparent;border-top-color:hsl(0, 0%, 20%);animation-duration:1.8s;width:40%;height:40%;top:30%;left:30%">
+                                        </div>
+                                        <div class="absolute inset-0 flex items-center justify-center"></div>
+                                    </div>
+                                </div>
+                                <div class="relative mx-auto w-[100%] rounded-[30px] bg-white object-fill shadow-2xl backdrop-blur-sm"
+                                    style="background:linear-gradient(white, white) padding-box, linear-gradient(90deg, rgba(255,128,181,0.5), rgba(144,137,252,0.5)) border-box;border:12px solid transparent">
+                                    <iframe src="https://ai-platform-virtual-try-on.hf.space/?__theme=light"
+                                        class="h-[3200px] w-full rounded-[18px] sm:h-[2200px]"></iframe></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </main>
+    <div></div>
+    <script src="../_next/static/chunks/webpack-e78e483637259e80.js" async=""></script>
+    <script>(self.__next_f = self.__next_f || []).push([0]); self.__next_f.push([2, null])</script>
+    <script>self.__next_f.push([1, "1:HL[\"/_next/static/media/a34f9d1faa5f3315-s.p.woff2\",\"font\",{\"crossOrigin\":\"\",\"type\":\"font/woff2\"}]\n2:HL[\"/_next/static/css/ab49f5b063db7907.css\",\"style\"]\n3:HL[\"/_next/static/css/5068b341e6b61b3a.css\",\"style\"]\n4:HL[\"/_next/static/css/dc8430fa12dc6524.css\",\"style\"]\n"])</script>
+    <script>self.__next_f.push([1, "5:I[56399,[],\"\"]\n7:I[58882,[\"649\",\"static/chunks/649-1bd70dbbede19eca.js\",\"810\",\"static/chunks/app/%5Blocale%5D/(pages)/create/page-fe7a1bc2f882a64f.js\"],\"default\"]\n8:I[92991,[\"649\",\"static/chunks/649-1bd70dbbede19eca.js\",\"810\",\"static/chunks/app/%5Blocale%5D/(pages)/create/page-fe7a1bc2f882a64f.js\"],\"default\"]\n9:I[54179,[],\"\"]\nb:I[82957,[],\"\"]\ne:I[74401,[],\"\"]\na:[\"locale\",\"en\",\"d\"]\nf:[]\n"])</script>
+    <script>self.__next_f.push([1, "0:[null,[\"$\",\"$L5\",null,{\"buildId\":\"MCgirnxKEbwuMcw3Y_0e-\",\"assetPrefix\":\"\",\"initialCanonicalUrl\":\"/create/\",\"initialTree\":[\"\",{\"children\":[[\"locale\",\"en\",\"d\"],{\"children\":[\"(pages)\",{\"children\":[\"create\",{\"children\":[\"__PAGE__\",{}]}]}]},\"$undefined\",\"$undefined\",true]}],\"initialSeedData\":[\"\",{\"children\":[[\"locale\",\"en\",\"d\"],{\"children\":[\"(pages)\",{\"children\":[\"create\",{\"children\":[\"__PAGE__\",{},[[\"$L6\",[\"$\",\"main\",null,{\"children\":[[\"$\",\"div\",null,{\"className\":\"mx-auto max-w-7xl px-6 pt-10 lg:px-8\",\"children\":[\"$\",\"div\",null,{\"className\":\"mx-auto max-w-2xl text-center\",\"children\":[\"$\",\"h1\",null,{\"className\":\"xs:text-[2rem] my-4 bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-4xl font-extrabold tracking-tight text-transparent sm:text-5xl sm:text-[2.5rem] lg:whitespace-nowrap lg:text-5xl lg:leading-tight\",\"children\":\"Free Online Kolors Virtual Try On in the Wild\"}]}]}],[\"$\",\"section\",null,{\"aria-label\":\"Kolors Virtual Try On\",\"className\":\"pb-8\",\"children\":[[\"$\",\"h2\",null,{\"className\":\"sr-only\",\"children\":\"Kolors Virtual Try On in the Wild\"}],[\"$\",\"div\",null,{\"className\":\"fixed bottom-20 right-10 z-50\",\"children\":[\"$\",\"$L7\",null,{}]}],[\"$\",\"$L8\",null,{}]]}]]}]],null],null]},[\"$\",\"$L9\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"$a\",\"children\",\"(pages)\",\"children\",\"create\",\"children\"],\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"styles\":null}],null]},[\"$\",\"$L9\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"$a\",\"children\",\"(pages)\",\"children\"],\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"styles\":null}],null]},[\"$Lc\",null],null]},[\"$\",\"$L9\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\"],\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":[[\"$\",\"title\",null,{\"children\":\"404: This page could not be found.\"}],[\"$\",\"div\",null,{\"style\":{\"fontFamily\":\"system-ui,\\\"Segoe UI\\\",Roboto,Helvetica,Arial,sans-serif,\\\"Apple Color Emoji\\\",\\\"Segoe UI Emoji\\\"\",\"height\":\"100vh\",\"textAlign\":\"center\",\"display\":\"flex\",\"flexDirection\":\"column\",\"alignItems\":\"center\",\"justifyContent\":\"center\"},\"children\":[\"$\",\"div\",null,{\"children\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\"}}],[\"$\",\"h1\",null,{\"className\":\"next-error-h1\",\"style\":{\"display\":\"inline-block\",\"margin\":\"0 20px 0 0\",\"padding\":\"0 23px 0 0\",\"fontSize\":24,\"fontWeight\":500,\"verticalAlign\":\"top\",\"lineHeight\":\"49px\"},\"children\":\"404\"}],[\"$\",\"div\",null,{\"style\":{\"display\":\"inline-block\"},\"children\":[\"$\",\"h2\",null,{\"style\":{\"fontSize\":14,\"fontWeight\":400,\"lineHeight\":\"49px\",\"margin\":0},\"children\":\"This page could not be found.\"}]}]]}]}]],\"notFoundStyles\":[],\"styles\":[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/ab49f5b063db7907.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\"}],[\"$\",\"link\",\"1\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/5068b341e6b61b3a.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\"}],[\"$\",\"link\",\"2\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/dc8430fa12dc6524.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\"}]]}],null],\"couldBeIntercepted\":false,\"initialHead\":[null,\"$Ld\"],\"globalErrorComponent\":\"$e\",\"missingSlots\":\"$Wf\"}]]\n"])</script>
+    <script>self.__next_f.push([1, "10:I[14930,[\"631\",\"static/chunks/7cdf5257-130e49f7dcef4933.js\",\"649\",\"static/chunks/649-1bd70dbbede19eca.js\",\"644\",\"static/chunks/644-f0f070d083adbf2a.js\",\"823\",\"static/chunks/823-47795b8f8f0ab958.js\",\"376\",\"static/chunks/376-c3090a1ffd1a1643.js\",\"425\",\"static/chunks/425-d7e7f7b314b41601.js\",\"531\",\"static/chunks/531-ea9e0d27da58be85.js\",\"601\",\"static/chunks/601-26c2ce5fa5ed78cd.js\",\"195\",\"static/chunks/195-75b006ac81de4965.js\",\"203\",\"static/chunks/app/%5Blocale%5D/layout-8fccb16c69b966d5.js\"],\"default\"]\n11:I[42007,[\"631\",\"static/chunks/7cdf5257-130e49f7dcef4933.js\",\"649\",\"static/chunks/649-1bd70dbbede19eca.js\",\"644\",\"static/chunks/644-f0f070d083adbf2a.js\",\"823\",\"static/chunks/823-47795b8f8f0ab958.js\",\"376\",\"static/chunks/376-c3090a1ffd1a1643.js\",\"425\",\"static/chunks/425-d7e7f7b314b41601.js\",\"531\",\"static/chunks/531-ea9e0d27da58be85.js\",\"601\",\"static/chunks/601-26c2ce5fa5ed78cd.js\",\"195\",\"static/chunks/195-75b006ac81de4965.js\",\"203\",\"static/chunks/app/%5Blocale%5D/layout-8fccb16c69b966d5.js\"],\"NextAuthSessionProvider\"]\n12:I[42618,[\"631\",\"static/chunks/7cdf5257-130e49f7dcef4933.js\",\"649\",\"static/chunks/649-1bd70dbbede19eca.js\",\"644\",\"static/chunks/644-f0f070d083adbf2a.js\",\"823\",\"static/chunks/823-47795b8f8f0ab958.js\",\"376\",\"static/chunks/376-c3090a1ffd1a1643.js\",\"425\",\"static/chunks/425-d7e7f7b314b41601.js\",\"531\",\"static/chunks/531-ea9e0d27da58be85.js\",\"601\",\"static/chunks/601-26c2ce5fa5ed78cd.js\",\"195\",\"static/chunks/195-75b006ac81de4965.js\",\"203\",\"static/chunks/app/%5Blocale%5D/layout-8fccb16c69b966d5.js\"],\"AppContextProvider\"]\n14:I[57531,[\"631\",\"static/chunks/7cdf5257-130e49f7dcef4933.js\",\"649\",\"static/chunks/649-1bd70dbbede19eca.js\",\"644\",\"static/chunks/644-f0f070d083adbf2a.js\",\"823\",\"static/chunks/823-47795b8f8f0ab958.js\",\"376\",\"static/chunks/376-c3090a1ffd1a1643.js\",\"425\",\"static/chunks/425-d7e7f7b314b41601.js\",\"531\",\"static/chunks/531-ea9e0d27da58be85.js\",\"601\",\"static/chunks/601-26c2ce5fa5ed78cd.js\",\"195\",\"static/chunks/195-75b006ac81de4965.js\",\"203\",\"static/chunks/app/%5Blocale%5D/layout-8fccb16c69b966d5.j"])</script>
+    <script>self.__next_f.push([1, "s\"],\"\"]\nc:[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[\"$\",\"body\",null,{\"className\":\"__className_d65c78\",\"children\":[[\"$\",\"$L10\",null,{\"children\":[\"$\",\"$L11\",null,{\"children\":[\"$\",\"$L12\",null,{\"children\":\"$L13\"}]}]}],[\"$\",\"$L14\",null,{\"async\":true,\"src\":\"../../pagead2.googlesyndication.com/pagead/js/f6927.txt?client=ca-pub-3221659079118172\",\"crossOrigin\":\"anonymous\",\"strategy\":\"lazyOnload\"}]]}]}]\nd:[[\"$\",\"meta\",\"0\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}],[\"$\",\"meta\",\"1\",{\"charSet\":\"utf-8\"}],[\"$\",\"title\",\"2\",{\"children\":\"Free Change Clothes AI: Kolors Virtual Try On\"}],[\"$\",\"meta\",\"3\",{\"name\":\"description\",\"content\":\"Change Clothes on Kolors Virtual Try On in the Wild. Allows you to virtually dress any model in various outfits, maintaining fabric textures, logos.\"}],[\"$\",\"meta\",\"4\",{\"name\":\"robots\",\"content\":\"index, follow\"}],[\"$\",\"link\",\"5\",{\"rel\":\"icon\",\"href\":\"/favicon.ico\"}],[\"$\",\"link\",\"6\",{\"rel\":\"apple-touch-icon\",\"href\":\"/apple-touch-icon.png\",\"sizes\":\"180x180\"}],[\"$\",\"link\",\"7\",{\"rel\":\"icon\",\"href\":\"/favicon-32x32.png\",\"type\":\"image/png\",\"sizes\":\"32x32\"}],[\"$\",\"link\",\"8\",{\"rel\":\"icon\",\"href\":\"/favicon-16x16.png\",\"type\":\"image/png\",\"sizes\":\"16x16\"}],[\"$\",\"meta\",\"9\",{\"name\":\"next-size-adjust\"}]]\n6:null\n"])</script>
+    <script>self.__next_f.push([1, "15:I[42942,[\"631\",\"static/chunks/7cdf5257-130e49f7dcef4933.js\",\"649\",\"static/chunks/649-1bd70dbbede19eca.js\",\"644\",\"static/chunks/644-f0f070d083adbf2a.js\",\"823\",\"static/chunks/823-47795b8f8f0ab958.js\",\"376\",\"static/chunks/376-c3090a1ffd1a1643.js\",\"425\",\"static/chunks/425-d7e7f7b314b41601.js\",\"531\",\"static/chunks/531-ea9e0d27da58be85.js\",\"601\",\"static/chunks/601-26c2ce5fa5ed78cd.js\",\"195\",\"static/chunks/195-75b006ac81de4965.js\",\"203\",\"static/chunks/app/%5Blocale%5D/layout-8fccb16c69b966d5.js\"],\"default\"]\n16:I[60403,[\"631\",\"static/chunks/7cdf5257-130e49f7dcef4933.js\",\"649\",\"static/chunks/649-1bd70dbbede19eca.js\",\"644\",\"static/chunks/644-f0f070d083adbf2a.js\",\"823\",\"static/chunks/823-47795b8f8f0ab958.js\",\"376\",\"static/chunks/376-c3090a1ffd1a1643.js\",\"425\",\"static/chunks/425-d7e7f7b314b41601.js\",\"531\",\"static/chunks/531-ea9e0d27da58be85.js\",\"601\",\"static/chunks/601-26c2ce5fa5ed78cd.js\",\"195\",\"static/chunks/195-75b006ac81de4965.js\",\"203\",\"static/chunks/app/%5Blocale%5D/layout-8fccb16c69b966d5.js\"],\"MobileMenuButton\"]\n17:I[39026,[\"631\",\"static/chunks/7cdf5257-130e49f7dcef4933.js\",\"649\",\"static/chunks/649-1bd70dbbede19eca.js\",\"644\",\"static/chunks/644-f0f070d083adbf2a.js\",\"823\",\"static/chunks/823-47795b8f8f0ab958.js\",\"376\",\"static/chunks/376-c3090a1ffd1a1643.js\",\"425\",\"static/chunks/425-d7e7f7b314b41601.js\",\"531\",\"static/chunks/531-ea9e0d27da58be85.js\",\"601\",\"static/chunks/601-26c2ce5fa5ed78cd.js\",\"195\",\"static/chunks/195-75b006ac81de4965.js\",\"203\",\"static/chunks/app/%5Blocale%5D/layout-8fccb16c69b966d5.js\"],\"default\"]\n18:I[92980,[\"631\",\"static/chunks/7cdf5257-130e49f7dcef4933.js\",\"649\",\"static/chunks/649-1bd70dbbede19eca.js\",\"644\",\"static/chunks/644-f0f070d083adbf2a.js\",\"823\",\"static/chunks/823-47795b8f8f0ab958.js\",\"376\",\"static/chunks/376-c3090a1ffd1a1643.js\",\"425\",\"static/chunks/425-d7e7f7b314b41601.js\",\"531\",\"static/chunks/531-ea9e0d27da58be85.js\",\"601\",\"static/chunks/601-26c2ce5fa5ed78cd.js\",\"195\",\"static/chunks/195-75b006ac81de4965.js\",\"203\",\"static/chunks/app/%5Blocale%5D/layout-8fccb16c69b966d5.js\"],\"default\"]\n19:"])</script>
+    <script>self.__next_f.push([1, "I[54109,[\"631\",\"static/chunks/7cdf5257-130e49f7dcef4933.js\",\"649\",\"static/chunks/649-1bd70dbbede19eca.js\",\"644\",\"static/chunks/644-f0f070d083adbf2a.js\",\"823\",\"static/chunks/823-47795b8f8f0ab958.js\",\"376\",\"static/chunks/376-c3090a1ffd1a1643.js\",\"425\",\"static/chunks/425-d7e7f7b314b41601.js\",\"531\",\"static/chunks/531-ea9e0d27da58be85.js\",\"601\",\"static/chunks/601-26c2ce5fa5ed78cd.js\",\"195\",\"static/chunks/195-75b006ac81de4965.js\",\"203\",\"static/chunks/app/%5Blocale%5D/layout-8fccb16c69b966d5.js\"],\"default\"]\n1a:I[83735,[\"631\",\"static/chunks/7cdf5257-130e49f7dcef4933.js\",\"649\",\"static/chunks/649-1bd70dbbede19eca.js\",\"644\",\"static/chunks/644-f0f070d083adbf2a.js\",\"823\",\"static/chunks/823-47795b8f8f0ab958.js\",\"376\",\"static/chunks/376-c3090a1ffd1a1643.js\",\"425\",\"static/chunks/425-d7e7f7b314b41601.js\",\"531\",\"static/chunks/531-ea9e0d27da58be85.js\",\"601\",\"static/chunks/601-26c2ce5fa5ed78cd.js\",\"195\",\"static/chunks/195-75b006ac81de4965.js\",\"203\",\"static/chunks/app/%5Blocale%5D/layout-8fccb16c69b966d5.js\"],\"MarketingBanner\"]\n1b:I[57271,[\"631\",\"static/chunks/7cdf5257-130e49f7dcef4933.js\",\"649\",\"static/chunks/649-1bd70dbbede19eca.js\",\"644\",\"static/chunks/644-f0f070d083adbf2a.js\",\"823\",\"static/chunks/823-47795b8f8f0ab958.js\",\"376\",\"static/chunks/376-c3090a1ffd1a1643.js\",\"425\",\"static/chunks/425-d7e7f7b314b41601.js\",\"531\",\"static/chunks/531-ea9e0d27da58be85.js\",\"601\",\"static/chunks/601-26c2ce5fa5ed78cd.js\",\"195\",\"static/chunks/195-75b006ac81de4965.js\",\"203\",\"static/chunks/app/%5Blocale%5D/layout-8fccb16c69b966d5.js\"],\"GoogleAnalytics\"]\n1c:I[32173,[\"631\",\"static/chunks/7cdf5257-130e49f7dcef4933.js\",\"649\",\"static/chunks/649-1bd70dbbede19eca.js\",\"644\",\"static/chunks/644-f0f070d083adbf2a.js\",\"823\",\"static/chunks/823-47795b8f8f0ab958.js\",\"376\",\"static/chunks/376-c3090a1ffd1a1643.js\",\"425\",\"static/chunks/425-d7e7f7b314b41601.js\",\"531\",\"static/chunks/531-ea9e0d27da58be85.js\",\"601\",\"static/chunks/601-26c2ce5fa5ed78cd.js\",\"195\",\"static/chunks/195-75b006ac81de4965.js\",\"203\",\"static/chunks/app/%5Blocale%5D/layout-8fccb16c69b966d5.js\"],\"Analytics"])</script>
+    <script>self.__next_f.push([1, "\"]\n"])</script>
+    <script>self.__next_f.push([1, "13:[\"$\",\"$L15\",null,{\"locale\":\"en\",\"now\":\"$D2024-11-20T14:57:23.820Z\",\"timeZone\":\"UTC\",\"messages\":{\"home\":{\"seo\":{\"title\":\"ChatGPT Image Generator | Beginner's Guide \u0026  Earn Money Tips\",\"description\":\"Unlock your potential with ChatGPT Image Generator ! From beginner to pro, we have the tools and guidance you need, helping you monetize your skill. Start today\"},\"hero\":{\"title\":\"Learn, Create, Earn\",\"subtitleWith\":\"with\",\"subtitle\":\"ChatGPT Image Generator\",\"step1\":\"Step-by-Step Tutorials\",\"step2\":\"Tips for Boosting Efficiency\",\"step3\":\"Case for Igniting Creativity\",\"step4\":\"Guide to Earning Income\",\"jumpLink\":\"Take Your First Step\"},\"feature\":{\"title\":\"Removing Learning Barriers\",\"subtitleFor\":\"for\",\"subtitle\":\"ChatGPT Image Generator\",\"description\":\"Learn, create and grow.\",\"tips\":\"Our tutorials and resources will guide you every step of the way\",\"singleFeature1\":{\"h1sm\":\"For beginners\",\"h1lg\":\"How does ChatGPT Image Generator work? \",\"imgAlt\":\"How does ChatGPT Image Generator work? \",\"imageButtonText\":\"Explore ChatGPT Image Generator\",\"description1\":{\"title\":\"Simple Explanation:\",\"desc\":\"ChatGPT Image Generator uses the power of artificial intelligence to transform your written descriptions (prompts) into visual pictures. It's like having a digital artist at your fingertips!\"},\"description2\":{\"title\":\"Helpful Prompts:\",\"desc\":\"We provide examples and suggestions to help you craft effective prompts, even if you're new to this. Easily use ChatGPT Image Generator to get the effect you want\"},\"description3\":{\"title\":\"Behind the Scenes:\",\"desc\":\"The ChatGPT Image Generator has been trained on a massive dataset of photo and text, learning to understand the relationships between words and visuals. When you provide a prompt, it uses this knowledge to generate an picture that matches your description. We provide up to 111 style effects according to the scene, free to choose different styles.\"}},\"singleFeature2\":{\"h1sm\":\"For creative people\",\"h1lg\":\"Can I customize the pictures to fit my needs with ChatGPT Image Generator?\",\"imgAlt\":\"Can I customize the images to fit my needs?\",\"imageButtonText\":\"Explore 111 styles\",\"description1\":{\"title\":\"Style Control:\",\"desc\":\"Specify the desired artistic style (e.g., watercolor, pixel art, oil painting)\"},\"description2\":{\"title\":\"Detail Adjustments:\",\"desc\":\"Control the level of detail, from broad strokes to intricate elements.\"},\"description3\":{\"title\":\"Prompt Refinement:\",\"desc\":\"Experiment with different wordings in your prompt to fine-tune the results.\"}},\"singleFeature3\":{\"h1sm\":\"For Creators\",\"h1lg\":\"Is there a free trial or free plan available? \",\"imageButtonText\":\"Explore Free ChatGPT Image Generator\",\"imgAlt\":\"Is there a free trial or free plan available? \",\"description1\":{\"title\":\"Free to Explore:\",\"desc\":\"Yes! We offer a generous free plan that allows you to experience the magic of ChatGPT Image Generator without any upfront cost.\"},\"description2\":{\"title\":\"handle data privacy:\",\"desc\":\"We designed with data privacy in mind. It does not share your personal data with unrelated parties without your consent. All generated content is solely owned by you.\"},\"description3\":{\"title\":\"Resource Library:\",\"desc\":\"Explore our growing library of articles and tips to master ChatGPT Image Generator and unlock your full creative potential.\"}}},\"blogs\":{\"title\":\"Finding the right way to use ChatGPT Image Generator\",\"subtitle\":\"make all the difference\",\"srtitle\":\"Blog post categories\",\"srsubtitle\":\" Choose a category to explore relevant ChatGPT Image Generator tips and techniques\"},\"faqs\":{\"title\":\"FAQs\",\"list\":{\"faq1\":{\"q\":\"Is ChatGPT Image Generator easy to use?\",\"a\":\"Absolutely! It's designed with beginners in mind. The interface is simple and intuitive, and there are plenty of tips and tutorials to help you along the way.\"},\"faq2\":{\"q\":\"What kind of photos can I create?\",\"a\":\"You can generate anything from realistic photos and landscapes to abstract art and fantasy creatures. The only limit is your imagination!\"},\"faq3\":{\"q\":\"How long does it take to create an picture with ChatGPT Image Generator?\",\"a\":\"Typically, it only takes a few seconds to create an picture. However, the exact time may vary depending on the complexity of your request and current server load.\"},\"faq4\":{\"q\":\"What if I don't like the picture it create?\",\"a\":\"You can always try creating another picture with a slightly different prompt. Or, you can tweak the settings to get a different result.\"}}}},\"p\":{\"chatgptImageGenerator\":{\"slug\":\"chatgpt-image-generator\",\"data\":{\"fatherPage\":\"Beginner\",\"blogCard\":{\"title\":\"What is a ChatGPT Image Generator and How Does it Work?\",\"description\":\"A comprehensive introduction to understanding what a ChatGPT image generator is and how it operates.\"},\"heroPropsData\":{\"title\":\"ChatGPT Image Generator\",\"subtitle\":\"From Text to picture\",\"description\":\"Unleash Your Creativity with our free ChatGPT Image Generator\"},\"singleFeatureDatas\":{\"feature1\":{\"h1sm\":\"For beginners\",\"h1lg\":\"What is a ChatGPT image generator ?\",\"imgAlt\":\"What is a ChatGPT image generator ?\",\"description\":{\"desc1\":\"Chatgpt Image Generator is a tool that utilizes state-of-the-art AI capabilities to generate high quality pictures from text descriptions.\",\"desc2\":\"It's capable of creating a variety of picture types, from photos, illustrations, artwork to designs, logos, and more. \",\"desc3\":\"It's a quick, efficient, and cost-effective solution to your visual content needs.\"}},\"feature2\":{\"h1lg\":\"How Does the ChatGPT Image Generator Work ?\",\"imgAlt\":\"How Does the ChatGPT Image Generator Work ?\",\"description\":{\"desc1\":\"Give ChatGPT image Generator a sentence description, it can \\\"read\\\" what you mean and then like a painter to turn the picture in your mind into a real photo. It contains several parts: text input, style selection, additional adjustments.\"}},\"feature3\":{\"h1lg\":\"Text input\",\"imgAlt\":\"Text input\",\"description\":{\"desc1\":\"The text input to the chatgpt image generator is called a \\\"prompt\\\", which is the starting point of the whole process. You provide a text to the chatgpt image generator that describes the picture you want to see. This text can be a simple keyword, it can be a detailed description of the scene, and it can even contain requirements for style, color, composition, etc.\"}},\"feature4\":{\"h1lg\":\"Style selection\",\"imgAlt\":\"Style selection\",\"description\":{\"desc1\":\"Style selection allows you to choose a specific artistic style or visual effect when generating an picture. It's like choosing a filter for your painting to give it a different feel. You can choose to imitate the style of famous painters, you can choose a certain style of photography, or even create a unique style of your own.\"}},\"feature5\":{\"h1lg\":\"Additional Adjustments\",\"imgUrl\":\"/images/need.jpg\",\"imgAlt\":\"Additional Adjustments\",\"description\":{\"desc1\":\"Negative Prompt lets you tell the chatgpt image generator what you don't want to see in the picture. This helps to avoid generating some content or effects that you don't want, and makes the generated more in line with your expectations.\"}}},\"nextStepProps\":{\"heading\":\"Chatgpt image generator Made a Breeze\",\"subheading\":\"With only three simple steps, you'll get a perfect picture generated\",\"steps1\":{\"number\":\"1\",\"title\":\"Choose lora style\",\"description\":\"Select your preferred style for the AI-generated picture.\"},\"steps2\":{\"number\":\"2\",\"title\":\"Input text\",\"description\":\"Describe the picture you want.\"},\"steps3\":{\"number\":\"3\",\"title\":\"Click run\",\"description\":\"Get the AI-generated picture you demand.\"}},\"faqs\":{\"faq1\":{\"question\":\"What types of pictures can your chatgpt image generator create?\",\"answer\":\"Our chatgpt image generator is versatile and can generate a wide variety of picture types. This includes photos, illustrations, artwork, designs, logos, and many more.\"},\"faq2\":{\"question\":\"Can your chatgpt image generator create pictures in different styles?\",\"answer\":\"Yes, we can adjust its style based on your preferences. We offer various style options and allow you to set a highly customized style for your specific requirements through detailed text prompts and features like LoRA.\"},\"faq3\":{\"question\":\"Can your chatgpt image generator help with content marketing?\",\"answer\":\"Yes,we can generate eye-catching and engaging pictures that can enhance your content marketing efforts. It can create visuals tailored to your target audience, increasing engagement and brand visibility.\"},\"faq4\":{\"question\":\"How does your chatgpt image generator handle data privacy?\",\"answer\":\"ChatGPT Image Generator is designed with data privacy in mind. It does not share your personal data with unrelated parties without your consent. All generated pictures are solely owned by you.\"},\"faq5\":{\"question\":\"Do I need any special skills to use this chatgpt image generator?\",\"answer\":\"No, you don't need any special skills to use ChatGPT Image Generator. Its user-friendly interface makes it easy for anyone to generate high-quality pictures.\"},\"faq6\":{\"question\":\"Can I modify or edit the pictures generated by the AI?\",\"answer\":\"Yes, you can often modify or edit the pictures generated by the AI. You can modify what you want to keep by adjusting the 111 style, adjusting the positive prompt, and using the negative prompt to remove the unwanted content.\"}},\"ctaParam\":{\"title\":\"Try Our Powerful chatgpt Image Generator!\",\"subtitle\":\"Start your free trial today.\",\"primaryButtonText\":\"Get started\",\"primaryButtonLink\":\"#\"}}}}},\"children\":[[\"$\",\"div\",null,{\"className\":\"border-b border-gray-200 bg-white\",\"children\":[[\"$\",\"header\",null,{\"className\":\"container mx-auto flex h-16 items-center justify-between lg:px-6\",\"children\":[[\"$\",\"nav\",null,{\"className\":\"flex h-16 items-center\",\"aria-label\":\"Global\",\"children\":[\"$\",\"div\",null,{\"className\":\"flex items-center\",\"children\":[[\"$\",\"a\",null,{\"href\":\"/\",\"className\":\"m-1.5 mr-4 shrink-0 p-1.5\",\"title\":\"logo\",\"children\":[\"$\",\"img\",null,{\"className\":\"h-8 shrink-0\",\"src\":\"/images/android-chrome-512x512.png\",\"alt\":\"kolors virtual try on Logo\"}]}],[\"$\",\"div\",null,{\"className\":\"flex items-center p-3 lg:hidden\",\"children\":[\"$\",\"$L16\",null,{\"navigation\":[{\"name\":\"Create\",\"href\":\"/create\"},{\"name\":\"Workspace\",\"href\":\"/workspace\"},{\"name\":\"Pricing\",\"href\":\"/pricing\"},{\"name\":\"Categories\",\"href\":\"#\",\"subItems\":[{\"name\":\"T-shirt\",\"href\":\"/category/t-shirt\"}]}],\"navName\":\"AI Tools\"}]}],[\"$\",\"div\",null,{\"className\":\"hidden py-5 lg:flex lg:gap-x-8\",\"children\":[[\"$\",\"$L17\",null,{\"navItem\":{\"name\":\"Create\",\"href\":\"/create\"},\"locale\":\"en\"}],[\"$\",\"$L17\",null,{\"navItem\":{\"name\":\"Workspace\",\"href\":\"/workspace\"},\"locale\":\"en\"}],[\"$\",\"$L17\",null,{\"navItem\":{\"name\":\"Pricing\",\"href\":\"/pricing\"},\"locale\":\"en\"}],[\"$\",\"$L16\",null,{\"navigation\":[{\"name\":\"T-shirt\",\"href\":\"/category/t-shirt\"}],\"navName\":\"Categories\"}]]}]]}]}],[\"$\",\"div\",null,{\"className\":\"flex items-center\",\"children\":[[\"$\",\"div\",null,{\"className\":\"mx-1\",\"children\":[\"$\",\"$L18\",null,{}]}],[\"$\",\"div\",null,{\"className\":\"mx-1\",\"children\":[\"$\",\"$L19\",null,{}]}]]}]]}],[\"$\",\"$L1a\",null,{\"text\":\"Faster and Better virtual try-on workspace! 🚀👗 \",\"linkText\":\"Try it now \",\"linkHref\":\"/workspace\"}]]}],[\"$\",\"main\",null,{\"children\":[\"$\",\"$L9\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"$a\",\"children\"],\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":[\"$\",\"main\",null,{\"className\":\"grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8\",\"children\":[\"$\",\"div\",null,{\"className\":\"text-center\",\"children\":[[\"$\",\"p\",null,{\"className\":\"text-base font-semibold text-indigo-600\",\"children\":\"404\"}],[\"$\",\"h1\",null,{\"className\":\"mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl\",\"children\":\"Page not found\"}],[\"$\",\"p\",null,{\"className\":\"mt-6 text-base leading-7 text-gray-600\",\"children\":\"Sorry, we couldn’t find the page you’re looking for.\"}],[\"$\",\"div\",null,{\"className\":\"mt-10 flex items-center justify-center gap-x-6\",\"children\":[\"$\",\"a\",null,{\"href\":\"/\",\"className\":\"rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600\",\"children\":\"Go back home\"}]}]]}]}],\"notFoundStyles\":[],\"styles\":null}]}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"$L1b\",null,{\"gaId\":\"G-NK28X9GPXX\"}],[\"$\",\"$L14\",null,{\"id\":\"clarity-script\",\"strategy\":\"afterInteractive\",\"children\":\"\\n        (function(c,l,a,r,i,t,y){\\n        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};\\n        t=l.createElement(r);t.async=1;t.src=\\\"https://www.clarity.ms/tag/\\\"+i;\\n        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);\\n        })(window, document, \\\"clarity\\\", \\\"script\\\", 'o2w439q6f1');\\n        \"}],[\"$\",\"$L1c\",null,{}]]}]]}]\n"])</script>
+</body>
+
+</html>
