@@ -57,19 +57,21 @@ const ProductCard = ({ item }) => {
   return (
     <Col lg="3" md="4" className="mb-2">
       <div className="product__item">
-        <div className="product__img">
-          <motion.img
-            whileHover={{ scale: 0.9 }}
-            src={item.imgUrl}
-            alt={item.itemProductName}
-          />
-        </div>
-        <div className="p-2 product__info">
-          <h3 className="product__name">
-            <Link to={`/shop/${item.id}`}>{item.itemProductName}</Link>
-          </h3>
-          <span>{item.category}</span>
-        </div>
+        <Link to={`/shop/${item.id}`}>
+          <div className="product__img">
+            <motion.img
+              whileHover={{ scale: 0.9 }}
+              src={item.imgUrl}
+              alt={item.itemProductName}
+            />
+          </div>
+          <div className="p-2 product__info">
+            <h3 className="product__name">
+            {item.itemProductName}
+            </h3>
+            <span>{item.category}</span>
+          </div>
+        </Link>
         <div className="product__card-bottom d-flex align-items-center justify-content-between p-2">
           <span className="price">Php {item.price}</span>
           {/* Pass the image URL and handleTryOn function to ARButton */}
