@@ -9,8 +9,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { cartActions } from "../../redux/slices/cartSlice";
 import useAuth from "../../custom-hooks/useAuth";
 import { Link } from "react-router-dom";
-import { signOut } from "firebase/auth";
-import { auth } from "../../firebase.config";
+import { deleteDoc, doc } from "firebase/firestore";
+import { signOut, deleteUser } from "firebase/auth";
+import { db, auth } from "../../firebase.config";
 import { toast } from "react-toastify";
 
 const nav__links = [
@@ -74,6 +75,17 @@ const Header = ( ) => {
     const logout = () => {
         signOut(auth).then(() => {
             toast.success('Logged Out')
+            navigate("/home")
+        }).catch( err => {
+            toast.error(err.message)
+        })
+    }
+
+    const deleteAccount = async () => {
+        await deleteDoc(doc(db, 'users', currentUser.uid));
+        
+        deleteUser(currentUser).then(() => {
+            toast.success('Account successfully deleted')
             navigate("/home")
         }).catch( err => {
             toast.error(err.message)
@@ -152,7 +164,12 @@ const Header = ( ) => {
                             onClick={toggleProfileActions}
                             >
                                 {
-                                    currentUser ? ( <span onClick={logout}>Logout</span> ) : (
+                                    currentUser ? ( 
+                                        <div className="d-flex align-items-center justify-content-center flex-column">
+                                            <span onClick={deleteAccount}>Delete Account</span>
+                                            <span onClick={logout}>Logout</span>
+                                        </div>
+                                     ) : (
                                     <div className="d-flex align-items-center justify-content-center flex-column">
                                         <Link to='/signup'>Signup</Link>
                                         <Link to='/login'>Login</Link>

@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import Helmet from "../components/Helmet/Helmet";
 import { Container, Row, Col, Form, FormGroup } from "reactstrap";
 import { Link, useNavigate } from "react-router-dom";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { db, auth } from "../firebase.config";
 import { doc, getDoc } from "firebase/firestore";
 import { toast } from "react-toastify";
@@ -31,11 +31,18 @@ const Login = ( ) => {
             if (userInfo.exists()) {
                 if(userInfo.data().type === 'seller') {
                     navigate('/dashboard');
-                } else navigate('/home');                
-            } else navigate('/checkout');
+                } else navigate('/home');
 
-            setLoading(false)
-            toast.success("Successfully Logged In")
+                toast.success("Successfully Logged In")
+            } else {
+                signOut(auth).then(() => {
+                    toast.error('User does not exist')
+                }).catch( err => {
+                    toast.error(err.message)
+                })
+            }
+
+            setLoading(false)           
         } catch (error) {
             setLoading(false)
             toast.error(error.message)

@@ -111,7 +111,7 @@ const Tr = ({item}) => {
             <td><img src={item.imgUrl} alt="" /></td>
             <td>{item.itemProductName}</td>
             <td>Php {item.price}</td>
-            <td>{item.category}x</td>
+            <td>{item.category}</td>
             <td> 
                 {item.size ? <button type="button" className="btn btn-sm btn-dark me-3" disabled>{item.size.toUpperCase()}</button> : ''}
             </td>

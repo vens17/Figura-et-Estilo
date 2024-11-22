@@ -1,8 +1,9 @@
 import React, { useRef } from "react";
 import { Container, Row } from "reactstrap";
 import useAuth from "../custom-hooks/useAuth";
-import { signOut } from "firebase/auth";
-import { auth } from "../firebase.config";
+import { deleteDoc, doc } from "firebase/firestore";
+import { signOut, deleteUser } from "firebase/auth";
+import { db, auth } from "../firebase.config";
 import { toast } from "react-toastify";
 import "../styles/admin-nav.css";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -48,6 +49,17 @@ const AdminNav = () => {
         })
     }
 
+    const deleteAccount = async () => {        
+        await deleteUser(currentUser).then(() => {
+            toast.success('Account successfully deleted')
+            navigate("/home")
+        }).catch( err => {
+            toast.error(err.message)
+        })
+
+        deleteDoc(doc(db, 'users', currentUser.uid));
+    }
+
     return (
     <>
         <header className="admin__header">
@@ -70,7 +82,11 @@ const AdminNav = () => {
                             
                             <div className="profile__actions" ref={profileActionRef} onClick={toggleProfileActions}>
                                 {
-                                    currentUser ? <span onClick={logout}>Logout</span> : ''
+                                    currentUser ? ( 
+                                    <div className="d-flex align-items-center justify-content-center flex-column">
+                                        <span onClick={deleteAccount}>Delete Account</span>
+                                        <span onClick={logout}>Logout</span>
+                                    </div>) : ''
                                 }
                             </div>
                         </div>

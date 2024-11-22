@@ -24,22 +24,6 @@ const Shop = ( ) => {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        if(category){
-            if(_.includes(['men', 'woman', 'unisex'], category)){
-                setProducts(_.filter(productsData, o => _.includes([category, 'unisex'], o.gender)))
-            }
-
-            if(category === 'kids'){
-                setProducts(_.filter(productsData, o => o.forKids))
-            }
-
-            if(category === 'accessories'){
-                setProducts(_.filter(productsData, o => o.category === category))
-            }
-        }
-    }, [productsData, category])
-
-    useEffect(() => {
         const getProduct = async() => {
             setLoading(true);
             const docSnap = await getDocs(collection(db, 'products'));
@@ -49,13 +33,30 @@ const Shop = ( ) => {
                 data.push(_.merge({ 'id': doc.id }, doc.data()));
             });
 
-            setProducts(data);
-            setProductsData(data);
+            if(category){
+                if(_.includes(['men', 'woman', 'unisex'], category)){
+                    setProductsData(_.filter(data, o => _.includes([category, 'unisex'], o.gender)))
+                    setProducts(_.filter(data, o => _.includes([category, 'unisex'], o.gender)))
+                }
+    
+                if(category === 'kids'){
+                    setProductsData(_.filter(productsData, o => o.forKids))
+                    setProducts(_.filter(productsData, o => o.forKids))
+                }
+    
+                if(category === 'accessories'){
+                    setProductsData(_.filter(data, o => o.category === category))
+                    setProducts(_.filter(data, o => o.category === category))
+                }
+            } else {
+                setProducts(data)
+                setProductsData(data)
+            }
             setLoading(false);
         }
 
         getProduct();
-    }, [])
+    }, [category])
 
     // itong part na 'to is for category filter ng mga products
     const handleFilter = e => {
@@ -157,8 +158,8 @@ const Shop = ( ) => {
                         <div className="filter__widget">
                                 <select onChange={handleSortFilter}>
                                     <option value="">Sort By</option>
-                                    <option value="ascending">Ascending</option>
-                                    <option value="descending">Descending</option>
+                                    <option value="ascending">Lowest to Highest</option>
+                                    <option value="descending">Highest to Lowest</option>
                                 </select>
                             </div>
                         </Col>

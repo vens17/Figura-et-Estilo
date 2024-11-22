@@ -13,7 +13,7 @@ const Signup = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [type, setAccountType] = useState("");
+  const [type, setAccountType] = useState("buyer");
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
 
