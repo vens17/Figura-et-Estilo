@@ -60,8 +60,8 @@ const ProductCard = ({ item }) => {
 
       <Link to={`/shop/${item.id}`}>
       <div className="product__item">
-<<<<<<< HEAD
-        <Link to={`/shop/${item.id}`}>
+
+
           <div className="product__img">
             <motion.img
               whileHover={{ scale: 0.9 }}
@@ -75,8 +75,8 @@ const ProductCard = ({ item }) => {
             </h3>
             <span>{item.category}</span>
           </div>
-        </Link>
-=======
+    
+
         <div className="product__img">
           <motion.img
             whileHover={{ scale: 0.9 }}
@@ -90,9 +90,9 @@ const ProductCard = ({ item }) => {
           </h3>
           <span>{item.category}</span>
         </div>
->>>>>>> ff0b06b (AR)
+
         <div className="product__card-bottom d-flex align-items-center justify-content-between p-2">
-          <span className="price">Php {item.price}</span>
+          {/* <span className="price">Php {item.price}</span> */}
           {/* Pass the image URL and handleTryOn function to ARButton */}
           <ARButton itemImage={item.imgUrl} onTryOn={handleTryOn} />
           {!_.includes(window.location.pathname, "home") && (

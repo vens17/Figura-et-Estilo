@@ -22,7 +22,7 @@ function ARButton() {
   return (
     <div>
       <button style={buttonStyle} onClick={handleClick}>
-        Open Camera
+        Try it on 
       </button>
 
       {/* Show the BodyDetection component only after the button is clicked */}
