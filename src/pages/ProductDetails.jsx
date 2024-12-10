@@ -19,6 +19,7 @@ const ProductDetails = ( ) => {
     
     const userID = useSelector((state) => state.cart.userID)
     const likeItems = useSelector((state) => state.cart.likeItems)
+    const reserveItems = useSelector((state) => state.cart.reserveItems)
     
     const [product, setProduct] = useState({})
     const [tab, setTab] = useState("desc");
@@ -84,7 +85,6 @@ const ProductDetails = ( ) => {
         toast.success("feedback submitted")
     };
 
-   
 
     const addToCart = async () => {
         const productData = { id, imgUrl, itemProductName, color, size, price, category, gender};
@@ -102,7 +102,35 @@ const ProductDetails = ( ) => {
             toast.success(`item successfully ${isLiked ? 'unliked' : 'liked'}`);
         } catch(error) {
             toast.error(error);  
-        }
+        } 
+    };
+
+    const addToReserve = async () => {        
+        const productData = { id, imgUrl, itemProductName, color, size, price, category, gender, quantity: 1};
+        dispatch( cartActions.reserveItem(productData) );
+
+        try{
+            const userRef = doc(db, "users", userID);
+            const item = _.find(reserveItems, o => o.id === id);
+           
+            if(item) {
+                productData.quantity = Number(item.quantity);
+                productData.quantity++;
+                const reserveData = _.filter(reserveItems, o => o.id !== id);
+                
+                await updateDoc(userRef, {
+                    reserves: [...reserveData, productData]
+                });
+            } else {
+                await updateDoc(userRef, {
+                    reserves: [...reserveItems, productData]
+                });
+            }            
+
+            toast.success(`item successfully reserved`);
+        } catch(error) {
+            toast.error(error);  
+        } 
 
         // dispatch(
         //     cartActions.addItem({
@@ -115,7 +143,7 @@ const ProductDetails = ( ) => {
         //     })
         // );
 
-        // toast.success("item added successfully to the cart");        
+        // toast.success("Item successfully reserved");
     };
 
     useEffect( () => {
@@ -200,8 +228,12 @@ const ProductDetails = ( ) => {
 
                                 <p className="mt-3">{shortDesc}</p>
 
-                                <motion.button whileTap={{ scale: 1.2 }} className={_.find(likeItems, o => o.id === id) ? 'btn btn-danger mt-5' : 'buy__btn'} onClick={addToCart}> 
+                                <motion.button whileTap={{ scale: 1.2 }} className={_.find(likeItems, o => o.id === id) ? 'btn btn-danger' : 'buy__btn'} onClick={addToCart}> 
                                     <i className={`ri-heart-${_.find(likeItems, o => o.id === id) ? 'fill' : 'line'} mt-3`}></i> {_.find(likeItems, o => o.id === id) ? 'Liked' : 'Like'}
+                                </motion.button>
+                                
+                                <motion.button whileTap={{ scale: 1.2 }} className='ms-3 buy__btn' onClick={addToReserve}> 
+                                    Reserve
                                 </motion.button>
                             </div>
                         </Col>

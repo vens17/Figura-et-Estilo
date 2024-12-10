@@ -46,8 +46,7 @@ const Users = ( ) => {
                                                     }}
                                                 >
                                                         Delete
-                                                </button> 
-                                                
+                                                </button>
                                             </td>
                                         </tr>
                                     ) )

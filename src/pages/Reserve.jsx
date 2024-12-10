@@ -11,20 +11,20 @@ import { useSelector, useDispatch } from "react-redux";
 import { toast } from 'react-toastify';
 import _ from 'lodash';
 
-const Cart = ( ) => {
+const Reserve = ( ) => {
 
-    const likeItems = useSelector((state) => state.cart.likeItems)
+    const reserveItems = useSelector((state) => state.cart.reserveItems)
 
     return (
-        <Helmet title="Favorites">
-            <CommonSection title="Favorites"/>
+        <Helmet title="Reservations">
+            <CommonSection title="Reservations"/>
             <section>
                 <Container>
                     <Row>
                         <Col>
 
                         {
-                            likeItems.length === 0 ? (<h2 className="fs-4 text-center">No items added to favorites</h2>) : ( 
+                            reserveItems.length === 0 ? (<h2 className="fs-4 text-center">No reserved items</h2>) : ( 
                             <table className="table cart-table bordered">
                                 <thead>
                                     <tr>
@@ -34,14 +34,14 @@ const Cart = ( ) => {
                                         <th>Category</th>
                                         <th>Size</th>
                                         <th>Color</th>
-                                        {/* <th>Quantity</th> */}
+                                        <th>Quantity</th>
                                         <th></th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
                                     {
-                                        likeItems.map((item,index) => (
+                                        reserveItems.map((item,index) => (
 
                                         <Tr item={item} key={index}/>
 
@@ -78,26 +78,23 @@ const Cart = ( ) => {
 const Tr = ({item}) => {
 
     const userID = useSelector((state) => state.cart.userID)
-    const likeItems = useSelector((state) => state.cart.likeItems)
+    const reserveItems = useSelector((state) => state.cart.reserveItems)
 
     const dispatch = useDispatch()
     
     const deleteProduct = async (data) => {
-        // dispatch (cartActions.deleteItem(item.id))
-
-        const productData = _.pick(data, ['id', 'imgUrl', 'itemProductName', 'price', 'category', 'gender']);
-        dispatch( cartActions.likeItem(productData) );
+        dispatch( cartActions.removeReserveItem(data.id) );
 
         try{
             const userRef = doc(db, "users", userID);
-            const isLiked = _.find(likeItems, o => o.id === data.id);
-            const likeData = isLiked ? _.filter(likeItems, o => o.id !== data.id) : [...likeItems, productData];
+            const isReserved = _.find(reserveItems, o => o.id === data.id);
+            const reserveData = isReserved ? _.filter(reserveItems, o => o.id !== data.id) : reserveItems;
             
             await updateDoc(userRef, {
-                likes: likeData
+                reserves: reserveData
             });
             
-            toast.success(`item successfully ${isLiked ? 'unliked' : 'liked'}`);
+            toast.success(`item successfully removed`);
         } catch(error) {
             toast.error(error);  
         }
@@ -114,7 +111,8 @@ const Tr = ({item}) => {
             </td>
             <td>
                 {item.color ? <div className="color-holder" style={{ background: item.color }}></div> : ''}
-            </td>            
+            </td>
+            <td>{item.quantity}</td>
             <td>
                 <motion.i 
                     whileTap={{ scale: 1.2 }} 
@@ -126,4 +124,4 @@ const Tr = ({item}) => {
     )
 }
 
-export default Cart;
+export default Reserve;

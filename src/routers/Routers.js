@@ -2,6 +2,7 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 import Home from '../pages/Home'
 import Shop from '../pages/Shop'
 import Cart from '../pages/Cart'
+import Reserve from '../pages/Reserve'
 import ProductDetails from '../pages/ProductDetails'
 // import Checkout from '../pages/Checkout'
 import Aboutus from '../pages/Aboutus'
@@ -26,7 +27,6 @@ const Routers = ( ) => {
         <Route path='shop' element={<Shop />} />        
         <Route path='shop/:id' element={<ProductDetails />} />
         <Route path='category/:category' element={<Shop />} />
-        <Route path='favorites' element={<Cart />}/>
         {/* <Route path='cart' element={<Cart />}/> */}
 
         <Route path='about-us' element={<Aboutus />} />
@@ -34,6 +34,8 @@ const Routers = ( ) => {
 
         <Route path="/*" element={<ProtectedRoute/>}>
             {/* <Route path="checkout" element={<Checkout/>} /> */}
+            <Route path='favorites' element={<Cart />}/>
+            <Route path='reserves' element={<Reserve />}/>
             
             {
                 currentUser?.type === 'seller' ?
@@ -43,10 +45,9 @@ const Routers = ( ) => {
                         <Route path="dashboard/all-products" element={<AllProducts/>} />
                         <Route path="dashboard/add-product" element={<AddProducts/>} />
                         <Route path="dashboard/edit-product/:id" element={<AddProducts/>} />
-                        <Route path="dashboard/orders" element={<Orders/>} />
+                        <Route path="dashboard/reservations" element={<Orders/>} />
                         <Route path="dashboard/users" element={<Users/>} />
-                    </>
-                : ''
+                    </>  : ''
             }
 
         </Route>

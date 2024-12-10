@@ -55,10 +55,11 @@ const Header = ( ) => {
 
     const navigate = useNavigate();
     
-    const{currentUser} = useAuth();
+    const{ currentUser } = useAuth();
 
     // const totalQuantity = useSelector(state => state.cart.totalQuantity)
     const likeItems = useSelector((state) => state.cart.likeItems)
+    const reserveItems = useSelector((state) => state.cart.reserveItems)
 
     const stickyHeaderFunc = () => {
         window.addEventListener("scroll", () => {
@@ -103,6 +104,10 @@ const Header = ( ) => {
             dispatch( cartActions.setLikeItem(currentUser.likes) );
         }
 
+        if(currentUser?.reserves){
+            dispatch( cartActions.setReserveItem(currentUser.reserves) );
+        }
+
         return () => window.removeEventListener("scroll", stickyHeaderFunc);
     }, [currentUser, dispatch]);
 
@@ -110,6 +115,10 @@ const Header = ( ) => {
 
     const navigateToCart = () => {
         navigate("/favorites");
+    };
+
+    const navigateToReserves = () => {
+        navigate("/reserves");
     };
 
     const toggleProfileActions = () => profileActionRef.current.classList.toggle('show__profileActions')
@@ -141,8 +150,11 @@ const Header = ( ) => {
 
                     <div className="nav__icons">
 
-                        <span className="fav__icon"><i className="ri-camera-line"></i>
+                        <span className="fav__icon" onClick={navigateToReserves}>
+                            <i className="ri-price-tag-3-line"></i>
+                            <span className="like-badge">{reserveItems.length}</span>
                         </span>
+
                         <span className="fav__icon" onClick={navigateToCart}>
                             <i className="ri-heart-line"></i>
                             <span className="like-badge">{likeItems.length}</span>

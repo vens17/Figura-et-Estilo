@@ -10,7 +10,7 @@ const Users = ( ) => {
         <section>
             <Container>
                 <Row>
-                    <Col lg='12' ><h4 className="fw-bold">Orders</h4></Col>
+                    <Col lg='12' ><h4 className="fw-bold">Reservations</h4></Col>
                     <Col lg='12' className="pt-5">
                         <table className="table">
                             <thead>
@@ -28,20 +28,20 @@ const Users = ( ) => {
                                 {
                                     loading ? <tr><td colSpan="6"><h5 className="pt-5 fw-bold">Loading...</h5> </td></tr>
                                     : usersData?.map(user => (
-                                        user.cart && user.cart.length ?
+                                        user.reserves && user.reserves.length ?
                                             <>
                                                 <tr className="bg-light" key={user.uid}>
                                                     <td colSpan="6"><img src={user.photoURL} alt="" style={{ 'width': '30px' }}/> <b className="ms-3">{user.displayName}</b></td>
                                                 </tr>
                                                 {
-                                                    user?.cart.map(item => (
+                                                    user?.reserves.map(item => (
                                                         <tr key={item.uid}>
                                                             <td><img src={item.imgUrl} alt="" style={{ 'width': '80px' }}/></td>     
-                                                            <td>{item.productName}</td>
+                                                            <td>{item.itemProductName}</td>
                                                             <td>{item.size ? <button type="button" className="btn btn-sm btn-dark me-3" disabled>{item.size.toUpperCase()}</button> : ''}</td>
                                                             <td>{item.color ? <div className="color-holder" style={{ background: item.color }}></div> : ''}</td>
                                                             <td>{item.quantity}</td>
-                                                            <td>{item.totalPrice}</td>
+                                                            <td>{item.price * item.quantity}</td>
                                                         </tr>
                                                     ) )      
                                                 }

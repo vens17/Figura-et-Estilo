@@ -1,12 +1,12 @@
 import React from 'react';
 import ProductCard from './ProductCard';
-
+import _ from 'lodash';
 
 const ProductsList = ( { data } ) => {
     return (
         <>
         {
-            data?.map((item, index) => (
+            _.sortBy(data, 'category')?.map((item, index) => (
                 <ProductCard item={item} key={index}/>
             ))
         }

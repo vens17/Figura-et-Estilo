@@ -6,6 +6,7 @@ const initialState = {
     userID: {},
     likeItems: [],
     cartItems: [],
+    reserveItems: [],
     totalAmount: 0,
     totalQuantity: 0
 
@@ -71,6 +72,26 @@ const cartSlice = createSlice ({
 
         setLikeItem: (state, action) => {
             state.likeItems = action.payload;
+        },
+
+        reserveItem: (state, action) => {
+            const newItem = action.payload;
+            const item = _.find(state.reserveItems, o => o.id === newItem.id);
+            
+            if(item){
+                item.quantity++;
+            } else {
+                state.reserveItems = [...state.reserveItems, newItem];
+            }
+        },
+
+        removeReserveItem: (state, action) => {
+            const id = action.payload;
+            state.reserveItems = _.filter(state.reserveItems, o => o.id !== id);
+        },
+
+        setReserveItem: (state, action) => {
+            state.reserveItems = action.payload;
         },
 
         setAuth: (state, action) => {
