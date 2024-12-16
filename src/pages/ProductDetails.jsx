@@ -105,7 +105,17 @@ const ProductDetails = ( ) => {
         } 
     };
 
-    const addToReserve = async () => {        
+    const addToReserve = async () => {
+        if(!size){
+            toast.error(`Please select a size`);
+            return;
+        }
+
+        if(!color){
+            toast.error(`Please select a color`);
+            return;
+        }
+
         const productData = { id, imgUrl, itemProductName, color, size, price, category, gender, quantity: 1};
         dispatch( cartActions.reserveItem(productData) );
 
